@@ -1,7 +1,19 @@
 {
   "name": "@braindepo/platform-api-cdk",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/braindepo/platform-api-cdk/tree/main/packages/platform-api-cdk"
+  },
+  "keywords": [
+    "@braindepo/platform-api-cdk",
+    "platform-proxy",
+    "platform-api-cdk"
+  ],
+  "author": {
+    "name": "Braindepo LLC"
+  },
   "scripts": {},
   "private": true,
   "dependencies": {
