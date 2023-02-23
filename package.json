@@ -1,6 +1,6 @@
 {
   "name": "@braindepo/platform-api-cdk",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -44,5 +44,6 @@
     "url": "https://github.com/braindepo/platform-api-cdk/issues"
   },
   "homepage": "https://github.com/braindepo/platform-api-cdk/tree/main#readme",
-  "main": "dist/packages/platform-api-cdk/src/index.js"
+  "main": "dist/packages/platform-api-cdk/src/index.js",
+  "types": "./dist/packages/platform-api-cdk/src/index.d.ts"
 }
