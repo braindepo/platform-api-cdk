@@ -1,25 +1,24 @@
 {
   "name": "@braindepo/platform-api-cdk",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/braindepo/platform-api-cdk/tree/main/packages/platform-api-cdk"
+    "url": "git+https://github.com/braindepo/platform-api-cdk.git#main"
   },
   "keywords": [
     "@braindepo/platform-api-cdk",
     "platform-proxy",
     "platform-api-cdk"
   ],
-  "author": {
-    "name": "Braindepo LLC"
-  },
+  "author": "Braindepo LLC",
   "scripts": {},
-  "private": true,
+  "private": false,
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@nrwl/devkit": "^15.7.2",
     "@nrwl/eslint-plugin-nx": "15.7.2",
     "@nrwl/jest": "15.7.2",
     "@nrwl/js": "15.7.2",
@@ -39,5 +38,11 @@
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "~4.8.2"
-  }
+  },
+  "description": "<p>Braindepo LLC. Platform proxy lib. Use it to communicate with braindepo platform.</p><a alt=\"Braindepo logo\" href=\"https://www.braindepo.com\" target=\"_blank\" rel=\"noreferrer\"><img src=\"https://admin.braindepo.com/uploads/big_logo_d7c089f060.png\" width=\"45\"></a>",
+  "bugs": {
+    "url": "https://github.com/braindepo/platform-api-cdk/issues"
+  },
+  "homepage": "https://github.com/braindepo/platform-api-cdk/tree/main#readme",
+  "main": "dist/packages/platform-api-cdk/src/index.js"
 }
