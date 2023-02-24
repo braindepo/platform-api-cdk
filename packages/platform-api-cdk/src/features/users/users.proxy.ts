@@ -12,8 +12,6 @@ export class UsersProxy extends PlatformProxy {
   }
 
   async exists(filter: IFindUserFilter): Promise<boolean> {
-    return this.axiosInstance.head(this.baseProxyUrl, { params: filter }).then((response) => {
-      return response.status === 204 ? true : false;
-    });
+    return this.axiosInstance.head(this.baseProxyUrl, { params: filter }).then((response) => response.status === 204);
   }
 }
