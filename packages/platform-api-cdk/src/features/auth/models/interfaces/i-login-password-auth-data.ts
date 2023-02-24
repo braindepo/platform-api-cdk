@@ -1,4 +1,4 @@
 export interface ILoginPasswordAuthData {
-  login: string;
+  username: string;
   password: string;
 }
