@@ -14,7 +14,8 @@ export class ProxiesFactory {
 
   constructor(baseURL: string) {
     this.axiosInstance = new Axios({
-      baseURL
+      baseURL,
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 

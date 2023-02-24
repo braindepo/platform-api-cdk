@@ -1,6 +1,7 @@
 import { Axios } from 'axios';
 
 import { PlatformProxy } from '../shared';
+
 import { IAuthToken, ILoginPasswordAuthData, ITokenAuthData, IUserAuthConfig } from './models';
 
 export class AuthProxy extends PlatformProxy {
@@ -10,15 +11,15 @@ export class AuthProxy extends PlatformProxy {
     super(axiosInstance);
   }
 
-  login(loginPassword: ILoginPasswordAuthData): Promise<IUserAuthConfig> {
-    return this.axiosInstance.post(`${this.baseProxyUrl}/login`, loginPassword);
+  async login(loginPassword: ILoginPasswordAuthData): Promise<IUserAuthConfig> {
+    return this.axiosInstance.post(`${this.baseProxyUrl}/login`, JSON.stringify(loginPassword)).then((response) => response.data);
   }
 
-  verifyJwt(authTokenData: ITokenAuthData): Promise<IAuthToken> {
-    return this.axiosInstance.post(`${this.baseProxyUrl}/verify-jwt`, authTokenData);
+  async verifyJwt(authTokenData: ITokenAuthData): Promise<IAuthToken> {
+    return this.axiosInstance.post(`${this.baseProxyUrl}/verify-jwt`, JSON.stringify(authTokenData)).then((response) => response.data);
   }
 
-  verifyApiToken(authTokenData: ITokenAuthData): Promise<IAuthToken> {
-    return this.axiosInstance.post(`${this.baseProxyUrl}/verify-api-token`, authTokenData);
+  async verifyApiToken(authTokenData: ITokenAuthData): Promise<IAuthToken> {
+    return this.axiosInstance.post(`${this.baseProxyUrl}/verify-api-token`, JSON.stringify(authTokenData)).then((response) => response.data);
   }
 }

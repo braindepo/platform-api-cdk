@@ -1,6 +1,7 @@
 import { Axios } from 'axios';
 
 import { PlatformProxy } from '../shared';
+
 import { IFindUserFilter } from './models';
 
 export class UsersProxy extends PlatformProxy {
@@ -10,7 +11,7 @@ export class UsersProxy extends PlatformProxy {
     super(axiosInstance);
   }
 
-  exists(filter: IFindUserFilter): Promise<boolean | never> {
-    return this.axiosInstance.head(this.baseProxyUrl, { params: filter })
+  async exists(filter: IFindUserFilter): Promise<boolean> {
+    return this.axiosInstance.head(this.baseProxyUrl, { params: filter }).then((response) => response.status === 204);
   }
 }
