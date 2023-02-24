@@ -2,6 +2,12 @@
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": ["@nrwl/nx"],
+  "extends": [
+    // https://github.com/eslint/eslint/blob/main/conf/eslint-recommended.js
+    "eslint:recommended",
+    // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
+    "plugin:prettier/recommended"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
