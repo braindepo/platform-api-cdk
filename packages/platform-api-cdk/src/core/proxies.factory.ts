@@ -35,11 +35,11 @@ export class ProxiesFactory {
     return new MyPlayersProxy(this.axiosInstance);
   }
 
-  userProfile(): UserProfileProxy {
-    return new UserProfileProxy(this.axiosInstance);
-  }
-
   users(): UsersProxy {
     return new UsersProxy(this.axiosInstance);
+  }
+
+  userProfile(): UserProfileProxy {
+    return new UserProfileProxy(this.axiosInstance);
   }
 }

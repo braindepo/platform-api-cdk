@@ -1,5 +1,5 @@
-import { IFindBaseFilter } from '../../../shared/models';
+import { IFindUserBaseFilter } from '../../../shared/users';
 
-export interface IFindUserFilter extends IFindBaseFilter {
+export interface IFindUserFilter extends IFindUserBaseFilter {
   roleId?: number;
 }

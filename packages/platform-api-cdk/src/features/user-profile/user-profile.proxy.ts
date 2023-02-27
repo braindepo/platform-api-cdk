@@ -1,6 +1,6 @@
 import { Axios } from 'axios';
 
-import { IUser } from '../../shared/models';
+import { IUser } from '../../shared/users';
 import { PlatformProxy } from '../../shared/proxies';
 
 export class UserProfileProxy extends PlatformProxy {

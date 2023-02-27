@@ -4,4 +4,5 @@ export * from './features/my-cashiers';
 export * from './features/my-players';
 export * from './features/user-profile';
 export * from './features/users';
-export * from './shared/models';
+export * from './shared/auth';
+export * from './shared/users';

@@ -1,7 +1,7 @@
 import { Axios } from 'axios';
 
 import { PlatformProxy } from '../../shared/proxies';
-import { IFindBaseFilter } from '../../shared/models';
+import { IFindUserBaseFilter } from '../../shared/users';
 
 export class MyPlayersProxy extends PlatformProxy {
   private readonly baseProxyUrl = '/my-players';
@@ -10,7 +10,7 @@ export class MyPlayersProxy extends PlatformProxy {
     super(axiosInstance);
   }
 
-  async exists(filter: IFindBaseFilter): Promise<boolean> {
+  async exists(filter: IFindUserBaseFilter): Promise<boolean> {
     return this.axiosInstance.head(this.baseProxyUrl, { params: filter }).then((response) => response.status === 204);
   }
 }

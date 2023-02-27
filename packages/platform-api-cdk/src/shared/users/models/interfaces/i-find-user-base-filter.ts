@@ -1,4 +1,4 @@
-export interface IFindBaseFilter {
+export interface IFindUserBaseFilter {
   id?: number;
   usernameSearchToken?: string;
   emailSearchToken?: string;

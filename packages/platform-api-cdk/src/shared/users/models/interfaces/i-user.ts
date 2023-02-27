@@ -1,4 +1,4 @@
-import { UserStatus, RoleType } from '../enums';
+import { UserStatus, RoleType } from '../../../auth/models';
 
 export interface IUser {
   id: number;
