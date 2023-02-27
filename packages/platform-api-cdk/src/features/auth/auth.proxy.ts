@@ -1,6 +1,6 @@
 import { Axios } from 'axios';
 
-import { PlatformProxy } from '../shared';
+import { PlatformProxy } from '../../shared/proxies';
 
 import { IAuthToken, ILoginPasswordAuthData, ITokenAuthData, IUserAuthConfig } from './models';
 

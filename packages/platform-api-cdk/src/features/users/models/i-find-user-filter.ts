@@ -1,9 +1,5 @@
-export interface IFindUserFilter {
-  id?: number;
-  usernameSearchToken?: string;
-  emailSearchToken?: string;
+import { IFindBaseFilter } from '../../../shared/models';
+
+export interface IFindUserFilter extends IFindBaseFilter {
   roleId?: number;
-  languageIsoCode?: string;
-  partnerId?: number;
-  cashierId?: number;
 }
