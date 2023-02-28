@@ -1,6 +1,7 @@
 import { Axios, RawAxiosRequestHeaders } from 'axios';
 
 import { AuthProxy } from '../features/auth';
+import { GamesProxy } from '../features/games';
 import { MyCashiersProxy } from '../features/my-cashiers';
 import { MyPlayersProxy } from '../features/my-players';
 import { UserProfileProxy } from '../features/user-profile';
@@ -26,6 +27,10 @@ export class ProxiesFactory {
 
   auth(): AuthProxy {
     return new AuthProxy(this.axiosInstance);
+  }
+
+  games(): GamesProxy {
+    return new GamesProxy(this.axiosInstance);
   }
 
   myCashiers(): MyCashiersProxy {
