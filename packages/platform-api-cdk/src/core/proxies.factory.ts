@@ -1,4 +1,4 @@
-import { Axios, RawAxiosRequestHeaders } from 'axios';
+import { Axios, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { AuthProxy } from '../features/auth';
 import { GamesProxy } from '../features/games';
@@ -7,7 +7,7 @@ import { MyPlayersProxy } from '../features/my-players';
 import { UserProfileProxy } from '../features/user-profile';
 import { UsersProxy } from '../features/users';
 
-import { AuthMethod } from './models';
+import { AuthMethod, IInterceptor } from './models';
 
 export class ProxiesFactory {
   private readonly axiosInstance: Axios;
@@ -16,6 +16,14 @@ export class ProxiesFactory {
     const authMethodPrefix = authMethod === AuthMethod.Jwt ? 'Bearer ' : 'Api-Key ';
     const headers = this.axiosInstance.defaults.headers as unknown as RawAxiosRequestHeaders;
     headers['Authorization'] = authMethodPrefix + authToken;
+  }
+
+  addRequestInterceptor(interceptor: IInterceptor<InternalAxiosRequestConfig>): void {
+    this.axiosInstance.interceptors.request.use(interceptor.fulfilled, interceptor.rejected);
+  }
+
+  addResponceInterceptor(interceptor: IInterceptor<AxiosResponse>): void {
+    this.axiosInstance.interceptors.response.use(interceptor.fulfilled, interceptor.rejected);
   }
 
   constructor(baseURL: string) {
