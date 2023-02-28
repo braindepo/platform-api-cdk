@@ -14,18 +14,18 @@ export class AuthProxy extends PlatformProxy {
   async login(loginPassword: ILoginPasswordAuthData): Promise<IUserAuthConfig> {
     return this.axiosInstance
       .post(`${this.baseProxyUrl}/login`, JSON.stringify(loginPassword))
-      .then((response) => response.data);
+      .then((response) => JSON.parse(response.data));
   }
 
   async verifyJwt(authTokenData: ITokenAuthData): Promise<IAuthToken> {
     return this.axiosInstance
       .post(`${this.baseProxyUrl}/verify-jwt`, JSON.stringify(authTokenData))
-      .then((response) => response.data);
+      .then((response) => JSON.parse(response.data));
   }
 
   async verifyApiToken(authTokenData: ITokenAuthData): Promise<IAuthToken> {
     return this.axiosInstance
       .post(`${this.baseProxyUrl}/verify-api-token`, JSON.stringify(authTokenData))
-      .then((response) => response.data);
+      .then((response) => JSON.parse(response.data));
   }
 }
