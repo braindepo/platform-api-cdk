@@ -1,4 +1,4 @@
-import { Axios } from 'axios';
+import { Axios, RawAxiosRequestHeaders } from 'axios';
 
 import { AuthProxy } from '../features/auth';
 import { MyCashiersProxy } from '../features/my-cashiers';
@@ -13,7 +13,8 @@ export class ProxiesFactory {
 
   setAuthToken(authToken: string, authMethod: AuthMethod): void {
     const authMethodPrefix = authMethod === AuthMethod.Jwt ? 'Bearer ' : 'Api-Key ';
-    this.axiosInstance.defaults.headers.common.Authorization = authMethodPrefix + authToken;
+    const headers = this.axiosInstance.defaults.headers as unknown as RawAxiosRequestHeaders;
+    headers['Authorization'] = authMethodPrefix + authToken;
   }
 
   constructor(baseURL: string) {
