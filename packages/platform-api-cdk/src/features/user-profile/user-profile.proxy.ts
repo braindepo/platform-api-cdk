@@ -11,6 +11,6 @@ export class UserProfileProxy extends PlatformProxy {
   }
 
   async findOne(): Promise<IUser> {
-    return this.axiosInstance.get(this.baseProxyUrl).then((response) => response.data);
+    return this.axiosInstance.get(this.baseProxyUrl).then((response) => JSON.parse(response.data));
   }
 }
