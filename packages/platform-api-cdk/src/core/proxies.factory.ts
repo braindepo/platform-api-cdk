@@ -1,5 +1,7 @@
 import { Axios, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
+import { AccountTransactionsProxy } from '../features/account-transactions';
+import { AccountsProxy } from '../features/accounts';
 import { AuthProxy } from '../features/auth';
 import { GamesProxy } from '../features/games';
 import { MyCashiersProxy } from '../features/my-cashiers';
@@ -31,6 +33,14 @@ export class ProxiesFactory {
       baseURL,
       headers: { 'Content-Type': 'application/json' },
     });
+  }
+
+  accountTransactions(): AccountTransactionsProxy {
+    return new AccountTransactionsProxy(this.axiosInstance);
+  }
+
+  accounts(): AccountsProxy {
+    return new AccountsProxy(this.axiosInstance);
   }
 
   auth(): AuthProxy {

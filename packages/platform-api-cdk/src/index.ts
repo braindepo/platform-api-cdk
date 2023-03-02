@@ -1,5 +1,7 @@
 export * from './core/proxies.factory';
 export * from './core/models';
+export * from './features/account-transactions';
+export * from './features/accounts';
 export * from './features/auth';
 export * from './features/games';
 export * from './features/my-cashiers';
