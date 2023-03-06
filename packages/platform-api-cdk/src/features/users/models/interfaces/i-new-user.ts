@@ -1,9 +1,5 @@
-export interface INewUser {
-  username: string;
+import { IBaseNewUser } from '../../../../shared/users';
+
+export interface INewUser extends IBaseNewUser {
   roleId: number;
-  name: string;
-  surname: string;
-  email: string;
-  password: string;
-  creatorId?: number;
 }

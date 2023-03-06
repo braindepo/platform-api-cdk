@@ -22,7 +22,7 @@ export class UsersProxy extends PlatformProxy {
   }
 
   async findOne(id: number): Promise<IUser> {
-    return this.axiosInstance.get(this.baseProxyUrl, { params: { id } }).then((response) => JSON.parse(response.data));
+    return this.axiosInstance.get(`${this.baseProxyUrl}/${id}`).then((response) => JSON.parse(response.data));
   }
 
   async findAll(filter: ICollectionFilter<IUsersSearchFilter, UsersSortBy>): Promise<IPaginatedData<IUser>> {
