@@ -1,15 +1,5 @@
-import { ITranslationsFilter } from '../../../../shared/translations';
+import { IBaseUsersSearchFilter } from '../../../../shared/users';
 
-export interface IUsersSearchFilter extends ITranslationsFilter {
-  id?: number;
-  statusId?: number;
-  usernameSearchToken?: string;
-  nameSearchToken?: string;
-  surnameSearchToken?: string;
-  emailSearchToken?: string;
-  balanceFrom?: number;
-  balanceTo?: number;
+export interface IUsersSearchFilter extends IBaseUsersSearchFilter {
   roleId?: number;
-  partnerId?: number;
-  cashierId?: number;
 }
