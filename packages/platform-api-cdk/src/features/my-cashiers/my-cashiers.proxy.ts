@@ -43,21 +43,21 @@ export class MyCashiersProxy extends PlatformProxy {
     return this.axiosInstance.get(`${this.baseProxyUrl}/statuses`).then((response) => JSON.parse(response.data));
   }
 
-  async updateSecurity(data: IUserSecurityInfo): Promise<IUser> {
+  async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
     return this.axiosInstance
-      .put(`${this.baseProxyUrl}/${data.id}/security`, JSON.stringify(data))
+      .put(`${this.baseProxyUrl}/${id}/security`, JSON.stringify(securityInfo))
       .then((response) => JSON.parse(response.data));
   }
 
-  async updateProfile(data: IUserProfileInfo): Promise<IUser> {
+  async updateProfile({ id, ...profileInfo }: IUserProfileInfo): Promise<IUser> {
     return this.axiosInstance
-      .put(`${this.baseProxyUrl}/${data.id}/profile`, JSON.stringify(data))
+      .put(`${this.baseProxyUrl}/${id}/profile`, JSON.stringify(profileInfo))
       .then((response) => JSON.parse(response.data));
   }
 
-  async updateStatus(data: IUserStatusInfo): Promise<IUser> {
+  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
     return this.axiosInstance
-      .put(`${this.baseProxyUrl}/${data.id}/status`, JSON.stringify(data))
+      .put(`${this.baseProxyUrl}/${id}/status`, JSON.stringify(statusInfo))
       .then((response) => JSON.parse(response.data));
   }
 }
