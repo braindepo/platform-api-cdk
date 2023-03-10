@@ -9,7 +9,6 @@ import {
   IAccountTransactionsType,
   IdNamePairsSearchFilter,
 } from '../../shared/billing';
-
 import { IPaginatedData, ICollectionFilter } from '../../shared/collections';
 import { PlatformProxy } from '../../shared/proxies';
 

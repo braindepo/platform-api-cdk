@@ -10,7 +10,6 @@ import {
   IAccountTransactionsType,
   IdNamePairsSearchFilter,
 } from '../../shared/billing';
-
 import { ITotalSum, IPaginatedSummarizedData } from './models';
 
 export class MyAccountTransactionsProxy extends PlatformProxy {
