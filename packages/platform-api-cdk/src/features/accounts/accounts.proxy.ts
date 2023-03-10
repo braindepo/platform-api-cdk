@@ -17,10 +17,14 @@ export class AccountsProxy extends PlatformProxy {
   }
 
   async create(data: INewAccount): Promise<number> {
-    return this.axiosInstance.post(this.baseProxyUrl, data).then((response) => JSON.parse(response.data));
+    return this.axiosInstance
+      .post(this.baseProxyUrl, JSON.stringify(data))
+      .then((response) => JSON.parse(response.data));
   }
 
   async update(data: IUpdateAccounts): Promise<void> {
-    return this.axiosInstance.put(`${this.baseProxyUrl}`, data).then((response) => JSON.parse(response.data));
+    return this.axiosInstance
+      .put(`${this.baseProxyUrl}`, JSON.stringify(data))
+      .then((response) => JSON.parse(response.data));
   }
 }

@@ -17,13 +17,13 @@ export class UserProfileProxy extends PlatformProxy {
 
   async updateSecurity(userSecurity: IUpdateUserSecurity): Promise<IUser> {
     return this.axiosInstance
-      .put(`${this.baseProxyUrl}/security`, userSecurity)
+      .put(`${this.baseProxyUrl}/security`, JSON.stringify(userSecurity))
       .then((response) => JSON.parse(response.data));
   }
 
   async updateProfile(userProfile: IUpdateUserProfile): Promise<IUser> {
     return this.axiosInstance
-      .put(`${this.baseProxyUrl}/profile`, userProfile)
+      .put(`${this.baseProxyUrl}/profile`, JSON.stringify(userProfile))
       .then((response) => JSON.parse(response.data));
   }
 }
