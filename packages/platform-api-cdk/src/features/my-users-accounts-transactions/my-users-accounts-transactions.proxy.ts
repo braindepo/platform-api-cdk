@@ -7,9 +7,8 @@ import {
   IAccountTransaction,
   IAccountTransactionsSearchFilter,
   IAccountTransactionsType,
-  IdNamePairsSearchFilter,
 } from '../../shared/billing';
-import { IPaginatedData, ICollectionFilter } from '../../shared/collections';
+import { IPaginatedData, ICollectionFilter, INameSearchFilter } from '../../shared/collections';
 import { PlatformProxy } from '../../shared/proxies';
 
 export class MyUsersAccountsTransactionsProxy extends PlatformProxy {
@@ -24,7 +23,7 @@ export class MyUsersAccountsTransactionsProxy extends PlatformProxy {
   }
 
   async sendersFindAll(
-    filter: ICollectionFilter<IdNamePairsSearchFilter, AccountOwnersSortBy>,
+    filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
     return this.axiosInstance
       .get(`${this.baseProxyUrl}/senders`, { params: filter })
@@ -32,7 +31,7 @@ export class MyUsersAccountsTransactionsProxy extends PlatformProxy {
   }
 
   async recipientsFindAll(
-    filter: ICollectionFilter<IdNamePairsSearchFilter, AccountOwnersSortBy>,
+    filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
     return this.axiosInstance
       .get(`${this.baseProxyUrl}/recipients`, { params: filter })
