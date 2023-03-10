@@ -1,4 +1,6 @@
-export interface IBaseUsersSearchFilter {
+import { ITranslationsFilter } from '../../../../shared/translations';
+
+export interface IBaseUsersSearchFilter extends ITranslationsFilter {
   id?: number;
   statusId?: number;
   usernameSearchToken?: string;

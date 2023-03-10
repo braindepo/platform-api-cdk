@@ -12,7 +12,7 @@ export class GamesProxy extends PlatformProxy {
   }
 
   async findOne(id: number): Promise<IGame> {
-    return this.axiosInstance.get(this.baseProxyUrl, { params: { id } }).then((response) => JSON.parse(response.data));
+    return this.axiosInstance.get(`${this.baseProxyUrl}/${id}`).then((response) => JSON.parse(response.data));
   }
 
   async findAll(filter: ICollectionFilter<IGamesSearchFilter, GamesSortBy>): Promise<IPaginatedData<IGame>> {
