@@ -1,9 +1,13 @@
 import { Axios, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
+import { AccountTransactionsProxy } from '../features/account-transactions';
+import { AccountsProxy } from '../features/accounts';
 import { AuthProxy } from '../features/auth';
 import { GamesProxy } from '../features/games';
+import { MyAccountTransactionsProxy } from '../features/my-account-transactions';
 import { MyCashiersProxy } from '../features/my-cashiers';
 import { MyPlayersProxy } from '../features/my-players';
+import { MyUsersAccountsTransactionsProxy } from '../features/my-users-accounts-transactions';
 import { UserProfileProxy } from '../features/user-profile';
 import { UsersProxy } from '../features/users';
 
@@ -33,6 +37,14 @@ export class ProxiesFactory {
     });
   }
 
+  accountTransactions(): AccountTransactionsProxy {
+    return new AccountTransactionsProxy(this.axiosInstance);
+  }
+
+  accounts(): AccountsProxy {
+    return new AccountsProxy(this.axiosInstance);
+  }
+
   auth(): AuthProxy {
     return new AuthProxy(this.axiosInstance);
   }
@@ -41,12 +53,20 @@ export class ProxiesFactory {
     return new GamesProxy(this.axiosInstance);
   }
 
+  myAccountTransactionsProxy(): MyAccountTransactionsProxy {
+    return new MyAccountTransactionsProxy(this.axiosInstance);
+  }
+
   myCashiers(): MyCashiersProxy {
     return new MyCashiersProxy(this.axiosInstance);
   }
 
   myPlayers(): MyPlayersProxy {
     return new MyPlayersProxy(this.axiosInstance);
+  }
+
+  myUsersAccountsTransactionsProxy(): MyUsersAccountsTransactionsProxy {
+    return new MyUsersAccountsTransactionsProxy(this.axiosInstance);
   }
 
   users(): UsersProxy {
