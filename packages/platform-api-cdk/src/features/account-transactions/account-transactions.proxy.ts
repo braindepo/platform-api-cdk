@@ -2,6 +2,8 @@ import { Axios } from 'axios';
 
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, INameSearchFilter, IPaginatedData } from '../../shared/collections';
+import { IAccountTransactionsType } from '../../shared/billing';
+
 import {
   AccountOwnersSortBy,
   AccountTransactionSortBy,
@@ -38,6 +40,10 @@ export class AccountTransactionsProxy extends PlatformProxy {
     return this.axiosInstance
       .get(`${this.baseProxyUrl}/recipients`, { params: data })
       .then((response) => JSON.parse(response.data));
+  }
+
+  async typesFindAll(): Promise<IAccountTransactionsType[]> {
+    return this.axiosInstance.get(`${this.baseProxyUrl}/types`).then((response) => JSON.parse(response.data));
   }
 
   async create(data: IOperation[]): Promise<number[]> {

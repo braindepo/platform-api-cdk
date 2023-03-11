@@ -3,6 +3,7 @@ import { Axios } from 'axios';
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
 import {
+  IAccountChange,
   IBaseNewUser,
   IBaseUsersSearchFilter,
   IFindUserBaseFilter,
@@ -58,6 +59,12 @@ export class MyCashiersProxy extends PlatformProxy {
   async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
     return this.axiosInstance
       .put(`${this.baseProxyUrl}/${id}/status`, JSON.stringify(statusInfo))
+      .then((response) => JSON.parse(response.data));
+  }
+
+  async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {
+    return this.axiosInstance
+      .put(`${this.baseProxyUrl}/${id}/limit`, JSON.stringify(changeData))
       .then((response) => JSON.parse(response.data));
   }
 }
