@@ -1,3 +1,4 @@
+export * from './i-account-change';
 export * from './i-base-new-user';
 export * from './i-base-users-search-filter';
 export * from './i-find-user-base-filter';

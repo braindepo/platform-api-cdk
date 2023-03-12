@@ -2,7 +2,14 @@ import { Axios } from 'axios';
 import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
 
 import { PlatformProxy } from '../../shared/proxies';
-import { IUser, IUserProfileInfo, IUserSecurityInfo, IUserStatus, IUserStatusInfo } from '../../shared/users';
+import {
+  IAccountChange,
+  IUser,
+  IUserProfileInfo,
+  IUserSecurityInfo,
+  IUserStatus,
+  IUserStatusInfo,
+} from '../../shared/users';
 
 import { IFindUserFilter, INewUser, IRole, IUsersSearchFilter, UsersSortBy } from './models';
 
@@ -54,6 +61,12 @@ export class UsersProxy extends PlatformProxy {
   async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
     return this.axiosInstance
       .put(`${this.baseProxyUrl}/${id}/status`, JSON.stringify(statusInfo))
+      .then((response) => JSON.parse(response.data));
+  }
+
+  async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {
+    return this.axiosInstance
+      .put(`${this.baseProxyUrl}/${id}/limit`, JSON.stringify(changeData))
       .then((response) => JSON.parse(response.data));
   }
 }
