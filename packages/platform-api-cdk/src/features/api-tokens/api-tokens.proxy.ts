@@ -10,6 +10,8 @@ import {
   IApiTokenStatusInfo,
   INewApiToken,
   INewApiTokenResult,
+  IResource,
+  IResourceToPermissionRelation,
 } from './models';
 
 export class ApiTokensProxy extends PlatformProxy {
@@ -25,6 +27,16 @@ export class ApiTokensProxy extends PlatformProxy {
 
   async findAll(filter: ICollectionFilter<IApiTokensSearchFilter, ApiTokenSortBy>): Promise<IPaginatedData<IApiToken>> {
     return this.axiosInstance.get(this.baseProxyUrl, { params: filter }).then((response) => JSON.parse(response.data));
+  }
+
+  async findAllResourceToPermissionRelations(): Promise<IResourceToPermissionRelation[]> {
+    return this.axiosInstance
+      .get(`${this.baseProxyUrl}/resource-permission-relations`)
+      .then((response) => JSON.parse(response.data));
+  }
+
+  async findAllResources(): Promise<IResource[]> {
+    return this.axiosInstance.get(`${this.baseProxyUrl}/resources`).then((response) => JSON.parse(response.data));
   }
 
   async create(data: INewApiToken): Promise<INewApiTokenResult> {
