@@ -2,12 +2,15 @@ import { Axios, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosRespons
 
 import { AccountTransactionsProxy } from '../features/account-transactions';
 import { AccountsProxy } from '../features/accounts';
+import { ApiTokensProxy } from '../features/api-tokens';
 import { AuthProxy } from '../features/auth';
 import { GamesProxy } from '../features/games';
+import { LoggerProxy } from '../features/logger';
 import { MyAccountTransactionsProxy } from '../features/my-account-transactions';
 import { MyCashiersProxy } from '../features/my-cashiers';
 import { MyPlayersProxy } from '../features/my-players';
 import { MyUsersAccountsTransactionsProxy } from '../features/my-users-accounts-transactions';
+import { TaskSchedularProxy } from '../features/task-scheduler';
 import { UserProfileProxy } from '../features/user-profile';
 import { UsersProxy } from '../features/users';
 
@@ -45,12 +48,20 @@ export class ProxiesFactory {
     return new AccountsProxy(this.axiosInstance);
   }
 
+  apiTokens(): ApiTokensProxy {
+    return new ApiTokensProxy(this.axiosInstance);
+  }
+
   auth(): AuthProxy {
     return new AuthProxy(this.axiosInstance);
   }
 
   games(): GamesProxy {
     return new GamesProxy(this.axiosInstance);
+  }
+
+  logger(): LoggerProxy {
+    return new LoggerProxy(this.axiosInstance);
   }
 
   myAccountTransactionsProxy(): MyAccountTransactionsProxy {
@@ -69,11 +80,15 @@ export class ProxiesFactory {
     return new MyUsersAccountsTransactionsProxy(this.axiosInstance);
   }
 
-  users(): UsersProxy {
-    return new UsersProxy(this.axiosInstance);
+  tasksSchedular(): TaskSchedularProxy {
+    return new TaskSchedularProxy(this.axiosInstance);
   }
 
   userProfile(): UserProfileProxy {
     return new UserProfileProxy(this.axiosInstance);
+  }
+
+  users(): UsersProxy {
+    return new UsersProxy(this.axiosInstance);
   }
 }
