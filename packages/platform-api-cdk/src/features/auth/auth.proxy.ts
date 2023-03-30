@@ -2,7 +2,15 @@ import { Axios } from 'axios';
 
 import { PlatformProxy } from '../../shared/proxies';
 
-import { IAuthToken, ILoginPasswordAuthData, ITokenAuthData, IUserAuthConfig } from './models';
+import {
+  IAuthToken,
+  IEmailVerificationData,
+  IEmailVerificationResult,
+  ILoginPasswordAuthData,
+  IRegisterData,
+  ITokenAuthData,
+  IUserAuthConfig,
+} from './models';
 
 export class AuthProxy extends PlatformProxy {
   private readonly baseProxyUrl = '/auth';
@@ -14,6 +22,18 @@ export class AuthProxy extends PlatformProxy {
   async login(loginPassword: ILoginPasswordAuthData): Promise<IUserAuthConfig> {
     return this.axiosInstance
       .post(`${this.baseProxyUrl}/login`, JSON.stringify(loginPassword))
+      .then((response) => JSON.parse(response.data));
+  }
+
+  async register(register: IRegisterData): Promise<number> {
+    return this.axiosInstance
+      .post(`${this.baseProxyUrl}/register`, JSON.stringify(register))
+      .then((response) => JSON.parse(response.data));
+  }
+
+  async verifyEmail(register: IEmailVerificationData): Promise<IEmailVerificationResult> {
+    return this.axiosInstance
+      .post(`${this.baseProxyUrl}/verify-email`, JSON.stringify(register))
       .then((response) => JSON.parse(response.data));
   }
 
