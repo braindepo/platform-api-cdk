@@ -7,6 +7,7 @@ import {
   IEmailVerificationData,
   IEmailVerificationResult,
   ILoginPasswordAuthData,
+  INewEmailVerificationTokenData,
   IRegisterData,
   ITokenAuthData,
   IUserAuthConfig,
@@ -31,9 +32,15 @@ export class AuthProxy extends PlatformProxy {
       .then((response) => JSON.parse(response.data));
   }
 
-  async verifyEmail(register: IEmailVerificationData): Promise<IEmailVerificationResult> {
+  async updateEmailVerificationToken(data: INewEmailVerificationTokenData): Promise<void> {
     return this.axiosInstance
-      .post(`${this.baseProxyUrl}/verify-email`, JSON.stringify(register))
+      .post(`${this.baseProxyUrl}/update-email-verification-token`, JSON.stringify(data))
+      .then((response) => JSON.parse(response.data));
+  }
+
+  async verifyEmail(data: IEmailVerificationData): Promise<IEmailVerificationResult> {
+    return this.axiosInstance
+      .post(`${this.baseProxyUrl}/verify-email`, JSON.stringify(data))
       .then((response) => JSON.parse(response.data));
   }
 
