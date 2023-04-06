@@ -15,43 +15,35 @@ import {
 } from './models';
 
 export class ApiTokensProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/api-tokens';
-
   constructor(axiosInstance: Axios) {
-    super(axiosInstance);
+    super(axiosInstance, '/api-tokens');
   }
 
   async findOne(id: number): Promise<IApiTokenDetails> {
-    return this.axiosInstance.get(`${this.baseProxyUrl}/${id}`).then((response) => JSON.parse(response.data));
+    return this.get(`/${id}`);
   }
 
   async findAll(filter: ICollectionFilter<IApiTokensSearchFilter, ApiTokenSortBy>): Promise<IPaginatedData<IApiToken>> {
-    return this.axiosInstance.get(this.baseProxyUrl, { params: filter }).then((response) => JSON.parse(response.data));
+    return this.get('', { params: filter });
   }
 
   async findAllResourceToPermissionRelations(): Promise<IResourceToPermissionRelation[]> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/resource-permission-relations`)
-      .then((response) => JSON.parse(response.data));
+    return this.get(`/resource-permission-relations`);
   }
 
   async findAllResources(): Promise<IResource[]> {
-    return this.axiosInstance.get(`${this.baseProxyUrl}/resources`).then((response) => JSON.parse(response.data));
+    return this.get('/resources');
   }
 
   async create(data: INewApiToken): Promise<INewApiTokenResult> {
-    return this.axiosInstance
-      .post(this.baseProxyUrl, JSON.stringify(data))
-      .then((response) => JSON.parse(response.data));
+    return this.post('', data);
   }
 
   async updateStatus({ id, ...data }: IApiTokenStatusInfo): Promise<void> {
-    return this.axiosInstance
-      .put(`${this.baseProxyUrl}/${id}/status`, JSON.stringify(data))
-      .then((response) => JSON.parse(response.data));
+    return this.put(`/${id}/status`, data);
   }
 
   async remove(id: number): Promise<void> {
-    return this.axiosInstance.delete(`${this.baseProxyUrl}/${id}`).then((response) => JSON.parse(response.data));
+    return this.delete(`/${id}`);
   }
 }

@@ -13,37 +13,29 @@ import {
 import { ITotalSum, IPaginatedSummarizedData } from './models';
 
 export class MyAccountTransactionsProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/my-account-transactions';
-
   constructor(axiosInstance: Axios) {
-    super(axiosInstance);
+    super(axiosInstance, '/my-account-transactions');
   }
 
   async typesFindAll(): Promise<IAccountTransactionsType[]> {
-    return this.axiosInstance.get(`${this.baseProxyUrl}/types`).then((response) => JSON.parse(response.data));
+    return this.get('/types');
   }
 
   async sendersFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/senders`, { params: filter })
-      .then((response) => JSON.parse(response.data));
+    return this.get('/senders', { params: filter });
   }
 
   async recipientsFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/recipients`, { params: filter })
-      .then((response) => JSON.parse(response.data));
+    return this.get('/recipients', { params: filter });
   }
 
   async summarizedFindAll(
     filter: ICollectionFilter<IAccountTransactionsSearchFilter, AccountTransactionSortBy>,
   ): Promise<IPaginatedSummarizedData<IAccountTransaction, ITotalSum>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}`, { params: filter })
-      .then((response) => JSON.parse(response.data));
+    return this.get('', { params: filter });
   }
 }

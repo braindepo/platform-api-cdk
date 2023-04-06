@@ -5,25 +5,19 @@ import { PlatformProxy } from '../../shared/proxies';
 import { IUpdateUserProfile, IUpdateUserSecurity } from './models';
 
 export class UserProfileProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/user-profile';
-
   constructor(axiosInstance: Axios) {
-    super(axiosInstance);
+    super(axiosInstance, '/user-profile');
   }
 
   async findOne(): Promise<IUser> {
-    return this.axiosInstance.get(this.baseProxyUrl).then((response) => JSON.parse(response.data));
+    return this.get('');
   }
 
   async updateSecurity(userSecurity: IUpdateUserSecurity): Promise<IUser> {
-    return this.axiosInstance
-      .put(`${this.baseProxyUrl}/security`, JSON.stringify(userSecurity))
-      .then((response) => JSON.parse(response.data));
+    return this.put('/security', userSecurity);
   }
 
   async updateProfile(userProfile: IUpdateUserProfile): Promise<IUser> {
-    return this.axiosInstance
-      .put(`${this.baseProxyUrl}/profile`, JSON.stringify(userProfile))
-      .then((response) => JSON.parse(response.data));
+    return this.put('/profile', userProfile);
   }
 }

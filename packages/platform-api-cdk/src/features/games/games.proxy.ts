@@ -5,17 +5,15 @@ import { PlatformProxy } from '../../shared/proxies';
 import { GamesSortBy, IGame, IGamesSearchFilter } from './models';
 
 export class GamesProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/games';
-
   constructor(axiosInstance: Axios) {
-    super(axiosInstance);
+    super(axiosInstance, '/games');
   }
 
   async findOne(id: number): Promise<IGame> {
-    return this.axiosInstance.get(`${this.baseProxyUrl}/${id}`).then((response) => JSON.parse(response.data));
+    return this.get(`/${id}`);
   }
 
   async findAll(filter: ICollectionFilter<IGamesSearchFilter, GamesSortBy>): Promise<IPaginatedData<IGame>> {
-    return this.axiosInstance.get(this.baseProxyUrl, { params: filter }).then((response) => JSON.parse(response.data));
+    return this.get('', { params: filter });
   }
 }

@@ -12,35 +12,29 @@ import { IPaginatedData, ICollectionFilter, INameSearchFilter } from '../../shar
 import { PlatformProxy } from '../../shared/proxies';
 
 export class MyUsersAccountsTransactionsProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/my-users-accounts-transactions';
-
   constructor(axiosInstance: Axios) {
-    super(axiosInstance);
+    super(axiosInstance, '/my-users-accounts-transactions');
   }
 
   async typesFindAll(): Promise<IAccountTransactionsType[]> {
-    return this.axiosInstance.get(`${this.baseProxyUrl}/types`).then((response) => JSON.parse(response.data));
+    return this.get('/types');
   }
 
   async sendersFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/senders`, { params: filter })
-      .then((response) => JSON.parse(response.data));
+    return this.get('/senders', { params: filter });
   }
 
   async recipientsFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/recipients`, { params: filter })
-      .then((response) => JSON.parse(response.data));
+    return this.get('/recipients', { params: filter });
   }
 
   async findAll(
     filter: ICollectionFilter<IAccountTransactionsSearchFilter, AccountTransactionSortBy>,
   ): Promise<IPaginatedData<IAccountTransaction>> {
-    return this.axiosInstance.get(this.baseProxyUrl, { params: filter }).then((response) => JSON.parse(response.data));
+    return this.get('', { params: filter });
   }
 }

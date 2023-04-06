@@ -14,39 +14,33 @@ import {
 } from './models';
 
 export class AccountTransactionsProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/account-transactions';
-
   constructor(axiosInstance: Axios) {
-    super(axiosInstance);
+    super(axiosInstance, '/account-transactions');
   }
 
   async findAll(
     data: ICollectionFilter<IAccountTransactionsSearchFilter, AccountTransactionSortBy>,
   ): Promise<IPaginatedData<IAccountTransaction>> {
-    return this.axiosInstance.get(this.baseProxyUrl, { params: data }).then((response) => JSON.parse(response.data));
+    return this.get('', { params: data });
   }
 
   async sendersFindAll(
     data: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/senders`, { params: data })
-      .then((response) => JSON.parse(response.data));
+    return this.get('/senders', { params: data });
   }
 
   async recipientsFindAll(
     data: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.axiosInstance
-      .get(`${this.baseProxyUrl}/recipients`, { params: data })
-      .then((response) => JSON.parse(response.data));
+    return this.get('/recipients', { params: data });
   }
 
   async typesFindAll(): Promise<IAccountTransactionsType[]> {
-    return this.axiosInstance.get(`${this.baseProxyUrl}/types`).then((response) => JSON.parse(response.data));
+    return this.get('/types');
   }
 
   async create(data: IOperation[]): Promise<number[]> {
-    return this.axiosInstance.post(this.baseProxyUrl, data).then((response) => JSON.parse(response.data));
+    return this.post('', data);
   }
 }
