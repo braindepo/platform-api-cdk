@@ -1,6 +1,6 @@
-import { IError } from './i-error';
+import { IApiGatewayError } from './i-api-gateway-error';
 
 export interface IInterceptor<T = unknown> {
   fulfilled?: (value: T) => T | Promise<T>;
-  rejected?: (error: IError) => IError;
+  rejected?: (error: IApiGatewayError) => IApiGatewayError;
 }
