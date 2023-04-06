@@ -9,6 +9,9 @@ import {
   ILoginPasswordAuthData,
   INewEmailVerificationTokenData,
   IRegisterData,
+  IResetPasswordData,
+  IResetPasswordResult,
+  IRestorePasswordData,
   ITokenAuthData,
   IUserAuthConfig,
 } from './models';
@@ -24,6 +27,14 @@ export class AuthProxy extends PlatformProxy {
 
   async register(register: IRegisterData): Promise<number> {
     return this.post('/register', register);
+  }
+
+  async restorePassword(data: IRestorePasswordData): Promise<void> {
+    return this.post('/restore-password', data);
+  }
+
+  async resetPassword(data: IResetPasswordData): Promise<IResetPasswordResult> {
+    return this.post('/reset-password', data);
   }
 
   async renewEmailVerificationToken(data: INewEmailVerificationTokenData): Promise<void> {
