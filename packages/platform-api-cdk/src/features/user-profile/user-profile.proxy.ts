@@ -2,7 +2,7 @@ import { Axios } from 'axios';
 
 import { IUser } from '../../shared/users';
 import { PlatformProxy } from '../../shared/proxies';
-import { IUpdateUserProfile, IUpdateUserSecurity } from './models';
+import { INewProfileVerificationRequest, IUpdateUserProfile, IUpdateUserSecurity } from './models';
 
 export class UserProfileProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
@@ -11,6 +11,10 @@ export class UserProfileProxy extends PlatformProxy {
 
   async findOne(): Promise<IUser> {
     return this.get('');
+  }
+
+  async createVerificationRequest(data: INewProfileVerificationRequest): Promise<number> {
+    return this.put('/verification-request', data);
   }
 
   async updateSecurity(userSecurity: IUpdateUserSecurity): Promise<IUser> {

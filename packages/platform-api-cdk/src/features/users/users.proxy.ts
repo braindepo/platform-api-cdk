@@ -11,7 +11,15 @@ import {
   IUserStatusInfo,
 } from '../../shared/users';
 
-import { IFindUserFilter, INewUser, IRole, IUsersSearchFilter, UsersSortBy } from './models';
+import {
+  IFindUserFilter,
+  INewUser,
+  IProfileVerificationRequest,
+  IProfileVerificationResult,
+  IRole,
+  IUsersSearchFilter,
+  UsersSortBy,
+} from './models';
 
 export class UsersProxy extends PlatformProxy {
   private readonly baseProxyUrl = '/users';
@@ -32,6 +40,10 @@ export class UsersProxy extends PlatformProxy {
     return this.get(`/${id}`);
   }
 
+  async findProfileVerificationRequest(id: number): Promise<IProfileVerificationRequest> {
+    return this.get(`/${id}/verification-request`);
+  }
+
   async findAll(filter: ICollectionFilter<IUsersSearchFilter, UsersSortBy>): Promise<IPaginatedData<IUser>> {
     return this.get('', { params: filter });
   }
@@ -42,6 +54,10 @@ export class UsersProxy extends PlatformProxy {
 
   async rolesFindAll(): Promise<IRole[]> {
     return this.get('/roles');
+  }
+
+  async setProfileVerificationResult({ userId, ...data }: IProfileVerificationResult): Promise<void> {
+    return this.put(`/${userId}/verification-request/is-verified`, data);
   }
 
   async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
