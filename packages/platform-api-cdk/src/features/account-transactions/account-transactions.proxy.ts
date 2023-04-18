@@ -36,10 +36,6 @@ export class AccountTransactionsProxy extends PlatformProxy {
     return this.get('/recipients', { params: data });
   }
 
-  async typesFindAll(): Promise<IAccountTransactionsType[]> {
-    return this.get('/types');
-  }
-
   async create(data: IOperation[]): Promise<number[]> {
     return this.post('', data);
   }

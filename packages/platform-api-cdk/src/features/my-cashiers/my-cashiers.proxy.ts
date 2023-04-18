@@ -24,8 +24,8 @@ export class MyCashiersProxy extends PlatformProxy {
     return this.head('', { params: filter }).then((response) => response.status === 204);
   }
 
-  async create(data: IBaseNewUser): Promise<number> {
-    return this.post('', data);
+  async statusesFindAll(): Promise<IUserStatus[]> {
+    return this.get('/statuses');
   }
 
   async findOne(id: number): Promise<IUser> {
@@ -36,8 +36,12 @@ export class MyCashiersProxy extends PlatformProxy {
     return this.get('', { params: filter });
   }
 
-  async statusesFindAll(): Promise<IUserStatus[]> {
-    return this.get('/statuses');
+  async create(data: IBaseNewUser): Promise<number> {
+    return this.post('', data);
+  }
+
+  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
+    return this.put(`/${id}/status`, statusInfo);
   }
 
   async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
@@ -46,10 +50,6 @@ export class MyCashiersProxy extends PlatformProxy {
 
   async updateProfile({ id, ...profileInfo }: IUserProfileInfo): Promise<IUser> {
     return this.put(`/${id}/profile`, profileInfo);
-  }
-
-  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
-    return this.put(`/${id}/status`, statusInfo);
   }
 
   async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {

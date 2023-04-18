@@ -22,8 +22,6 @@ import {
 } from './models';
 
 export class UsersProxy extends PlatformProxy {
-  private readonly baseProxyUrl = '/users';
-
   constructor(axiosInstance: Axios) {
     super(axiosInstance, '/users');
   }
@@ -32,32 +30,36 @@ export class UsersProxy extends PlatformProxy {
     return this.head('', { params: filter }).then((response) => response.status === 204);
   }
 
-  async create(data: INewUser): Promise<number> {
-    return this.post('', data);
-  }
-
-  async findOne(id: number): Promise<IUser> {
-    return this.get(`/${id}`);
-  }
-
-  async findProfileVerificationRequest(id: number): Promise<IProfileVerificationRequest> {
-    return this.get(`/${id}/verification-request`);
-  }
-
-  async findAll(filter: ICollectionFilter<IUsersSearchFilter, UsersSortBy>): Promise<IPaginatedData<IUser>> {
-    return this.get('', { params: filter });
+  async rolesFindAll(): Promise<IRole[]> {
+    return this.get('/roles');
   }
 
   async statusesFindAll(): Promise<IUserStatus[]> {
     return this.get('/statuses');
   }
 
-  async rolesFindAll(): Promise<IRole[]> {
-    return this.get('/roles');
+  async findProfileVerificationRequest(id: number): Promise<IProfileVerificationRequest> {
+    return this.get(`/${id}/verification-request`);
+  }
+
+  async findOne(id: number): Promise<IUser> {
+    return this.get(`/${id}`);
+  }
+
+  async findAll(filter: ICollectionFilter<IUsersSearchFilter, UsersSortBy>): Promise<IPaginatedData<IUser>> {
+    return this.get('', { params: filter });
+  }
+
+  async create(data: INewUser): Promise<number> {
+    return this.post('', data);
   }
 
   async setProfileVerificationResult({ userId, ...data }: IProfileVerificationResult): Promise<void> {
     return this.put(`/${userId}/verification-request/is-verified`, data);
+  }
+
+  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
+    return this.put(`/${id}/status`, statusInfo);
   }
 
   async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
@@ -66,10 +68,6 @@ export class UsersProxy extends PlatformProxy {
 
   async updateProfile({ id, ...profileInfo }: IUserProfileInfo): Promise<IUser> {
     return this.put(`/${id}/profile`, profileInfo);
-  }
-
-  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
-    return this.put(`/${id}/status`, statusInfo);
   }
 
   async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {

@@ -8,7 +8,7 @@ export interface IUser {
   surname: string;
   reasonForBlocking: string;
   email: string;
-  balance: number;
   role: string;
   roleType: RoleType;
+  balance: number;
 }

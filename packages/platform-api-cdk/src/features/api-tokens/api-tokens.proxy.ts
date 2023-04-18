@@ -19,10 +19,6 @@ export class ApiTokensProxy extends PlatformProxy {
     super(axiosInstance, '/api-tokens');
   }
 
-  async findOne(id: number): Promise<IApiTokenDetails> {
-    return this.get(`/${id}`);
-  }
-
   async findAll(filter: ICollectionFilter<IApiTokensSearchFilter, ApiTokenSortBy>): Promise<IPaginatedData<IApiToken>> {
     return this.get('', { params: filter });
   }
@@ -33,6 +29,10 @@ export class ApiTokensProxy extends PlatformProxy {
 
   async findAllResources(): Promise<IResource[]> {
     return this.get('/resources');
+  }
+
+  async findOne(id: number): Promise<IApiTokenDetails> {
+    return this.get(`/${id}`);
   }
 
   async create(data: INewApiToken): Promise<INewApiTokenResult> {
