@@ -6,7 +6,8 @@ export interface IUser {
   login: string;
   name: string;
   surname: string;
-  reasonForBlocking: string;
+  reasonForBlocking?: string;
+  verificationRejectionReason?: string;
   email: string;
   role: string;
   roleType: RoleType;
