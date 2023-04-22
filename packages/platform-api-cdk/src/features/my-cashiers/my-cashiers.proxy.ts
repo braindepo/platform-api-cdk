@@ -11,7 +11,7 @@ import {
   IUserProfileInfo,
   IUserSecurityInfo,
   IUserStatus,
-  IUserStatusInfo,
+  IUserBlockStateData,
 } from '../../shared/users';
 import { MyCashiersSortBy } from './models';
 
@@ -40,8 +40,8 @@ export class MyCashiersProxy extends PlatformProxy {
     return this.post('', data);
   }
 
-  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
-    return this.put(`/${id}/status`, statusInfo);
+  async toggleBlockState({ id, ...toggleBlockState }: IUserBlockStateData): Promise<IUser> {
+    return this.put(`/${id}/is-blocked`, toggleBlockState);
   }
 
   async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {

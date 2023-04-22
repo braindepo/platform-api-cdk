@@ -11,7 +11,7 @@ import {
   IUserProfileInfo,
   IUserSecurityInfo,
   IUserStatus,
-  IUserStatusInfo,
+  IUserBlockStateData,
 } from '../../shared/users';
 import { MyPlayersSortBy } from './models';
 
@@ -48,8 +48,8 @@ export class MyPlayersProxy extends PlatformProxy {
     return this.put(`/${id}/profile`, profileInfo);
   }
 
-  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
-    return this.put(`/${id}/status`, statusInfo);
+  async toggleBlockState({ id, ...toggleBlockState }: IUserBlockStateData): Promise<IUser> {
+    return this.put(`/${id}/is-blocked`, toggleBlockState);
   }
 
   async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {

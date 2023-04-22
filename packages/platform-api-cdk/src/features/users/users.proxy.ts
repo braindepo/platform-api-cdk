@@ -8,7 +8,7 @@ import {
   IUserProfileInfo,
   IUserSecurityInfo,
   IUserStatus,
-  IUserStatusInfo,
+  IUserBlockStateData,
 } from '../../shared/users';
 
 import {
@@ -58,8 +58,8 @@ export class UsersProxy extends PlatformProxy {
     return this.put(`/${userId}/verification-request/is-verified`, data);
   }
 
-  async updateStatus({ id, ...statusInfo }: IUserStatusInfo): Promise<IUser> {
-    return this.put(`/${id}/status`, statusInfo);
+  async toggleBlockState({ id, ...blockStateData }: IUserBlockStateData): Promise<IUser> {
+    return this.put(`/${id}/is-blocked`, blockStateData);
   }
 
   async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
