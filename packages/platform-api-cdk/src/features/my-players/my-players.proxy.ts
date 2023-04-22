@@ -48,8 +48,8 @@ export class MyPlayersProxy extends PlatformProxy {
     return this.put(`/${id}/profile`, profileInfo);
   }
 
-  async toggleBlockState({ id, ...toggleBlockState }: IUserBlockStateData): Promise<IUser> {
-    return this.put(`/${id}/is-blocked`, toggleBlockState);
+  async setBlockState({ id, ...blockStateData }: IUserBlockStateData): Promise<IUser> {
+    return this.put(`/${id}/is-blocked`, blockStateData);
   }
 
   async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {

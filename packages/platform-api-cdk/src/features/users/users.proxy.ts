@@ -58,7 +58,7 @@ export class UsersProxy extends PlatformProxy {
     return this.put(`/${userId}/verification-request/is-verified`, data);
   }
 
-  async toggleBlockState({ id, ...blockStateData }: IUserBlockStateData): Promise<IUser> {
+  async setBlockState({ id, ...blockStateData }: IUserBlockStateData): Promise<IUser> {
     return this.put(`/${id}/is-blocked`, blockStateData);
   }
 

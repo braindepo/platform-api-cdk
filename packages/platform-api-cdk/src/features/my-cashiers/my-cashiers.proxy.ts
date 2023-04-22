@@ -40,8 +40,8 @@ export class MyCashiersProxy extends PlatformProxy {
     return this.post('', data);
   }
 
-  async toggleBlockState({ id, ...toggleBlockState }: IUserBlockStateData): Promise<IUser> {
-    return this.put(`/${id}/is-blocked`, toggleBlockState);
+  async setBlockState({ id, ...blockStateData }: IUserBlockStateData): Promise<IUser> {
+    return this.put(`/${id}/is-blocked`, blockStateData);
   }
 
   async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
