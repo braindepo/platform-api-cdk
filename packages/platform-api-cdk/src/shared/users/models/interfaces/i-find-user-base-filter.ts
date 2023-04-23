@@ -1,7 +1,7 @@
 export interface IFindUserBaseFilter {
   id?: number;
-  usernameSearchToken?: string;
-  emailSearchToken?: string;
+  username?: string;
+  email?: string;
   languageIsoCode?: string;
   partnerId?: number;
   cashierId?: number;

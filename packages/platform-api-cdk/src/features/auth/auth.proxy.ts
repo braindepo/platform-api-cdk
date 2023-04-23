@@ -1,6 +1,7 @@
 import { Axios } from 'axios';
 
 import { PlatformProxy } from '../../shared/proxies';
+import { IFindUserBaseFilter } from '../../shared/users';
 
 import {
   IAuthToken,
@@ -19,6 +20,10 @@ import {
 export class AuthProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
     super(axiosInstance, '/auth');
+  }
+
+  async exist(filter: IFindUserBaseFilter): Promise<boolean> {
+    return this.head('', { params: filter }).then((response) => response.status === 204);
   }
 
   async login(loginPassword: ILoginPasswordAuthData): Promise<IUserAuthConfig> {
