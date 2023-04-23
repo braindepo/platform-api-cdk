@@ -3,7 +3,7 @@ import { UserStatus, RoleType } from '../../../auth/models';
 export interface IUser {
   id: number;
   status: UserStatus;
-  login: string;
+  username: string;
   name: string;
   surname: string;
   reasonForBlocking?: string;
