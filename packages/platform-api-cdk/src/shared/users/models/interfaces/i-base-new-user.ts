@@ -4,4 +4,6 @@ export interface IBaseNewUser {
   surname: string;
   email: string;
   password: string;
+  emailVerificationUrlPattern?: string;
+  suppressInstantEmailVerification?: boolean;
 }
