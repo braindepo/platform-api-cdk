@@ -24,4 +24,8 @@ export class UserProfileProxy extends PlatformProxy {
   async createVerificationRequest(data: INewProfileVerificationRequest): Promise<number> {
     return this.put('/verification-request', data);
   }
+
+  async remove(): Promise<void> {
+    return this.delete('');
+  }
 }
