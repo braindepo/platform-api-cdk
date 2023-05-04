@@ -4,6 +4,7 @@ export * from './features/account-transactions';
 export * from './features/accounts';
 export * from './features/api-tokens';
 export * from './features/auth';
+export * from './features/file-manager';
 export * from './features/games';
 export * from './features/logger';
 export * from './features/my-account-transactions';
