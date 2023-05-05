@@ -23,6 +23,7 @@ export class FileManagerProxy extends PlatformProxy {
 
   async add(formData: FormData): Promise<number> {
     return this.post('', formData, {
+      supressDataStringification: true,
       headers: {
         'Content-Type': 'multipart/form-data',
       },
