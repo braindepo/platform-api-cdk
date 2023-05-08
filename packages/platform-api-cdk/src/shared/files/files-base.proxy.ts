@@ -3,7 +3,7 @@ import { PlatformProxy } from '../proxies';
 import { ICollectionFilter, IPaginatedData } from '../collections';
 import { IFilesSearchFilter, FileSortBy, IFile } from './models';
 
-export class FileBaseProxy extends PlatformProxy {
+export class FilesBaseProxy extends PlatformProxy {
   constructor(axiosInstance: Axios, baseUrl: string) {
     super(axiosInstance, baseUrl);
   }

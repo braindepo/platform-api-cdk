@@ -1,8 +1,8 @@
 import { Axios } from 'axios';
 
-import { FileBaseProxy } from '../../shared/files';
+import { FilesBaseProxy } from '../../shared/files';
 
-export class MyFilesProxy extends FileBaseProxy {
+export class MyFilesProxy extends FilesBaseProxy {
   constructor(axiosInstance: Axios) {
     super(axiosInstance, '/my-files');
   }

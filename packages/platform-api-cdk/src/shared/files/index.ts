@@ -1,2 +1,2 @@
 export * from './models';
-export * from './file-base.proxy';
+export * from './files-base.proxy';
