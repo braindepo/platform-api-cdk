@@ -9,6 +9,7 @@ export * from './features/games';
 export * from './features/logger';
 export * from './features/my-account-transactions';
 export * from './features/my-cashiers';
+export * from './features/my-files';
 export * from './features/my-players';
 export * from './features/my-users-accounts-transactions';
 export * from './features/task-scheduler';

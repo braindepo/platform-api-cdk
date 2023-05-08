@@ -2,11 +2,11 @@ import { Axios } from 'axios';
 
 import { IPaginatedData, ICollectionFilter } from '../../shared/collections';
 import { PlatformProxy } from '../../shared/proxies';
-import { IFilesSearchFilter, FileSortBy, IFile } from '../../shared/files/models';
+import { IFilesSearchFilter, FileSortBy, IFile } from '../../shared/files';
 
-export class FileManagerProxy extends PlatformProxy {
+export class MyFilesProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
-    super(axiosInstance, '/files');
+    super(axiosInstance, '/my-files');
   }
 
   async getFilePath(id: number): Promise<string> {

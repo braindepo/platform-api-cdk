@@ -9,6 +9,7 @@ import { GamesProxy } from '../features/games';
 import { LoggerProxy } from '../features/logger';
 import { MyAccountTransactionsProxy } from '../features/my-account-transactions';
 import { MyCashiersProxy } from '../features/my-cashiers';
+import { MyFilesProxy } from '../features/my-files';
 import { MyPlayersProxy } from '../features/my-players';
 import { MyUsersAccountsTransactionsProxy } from '../features/my-users-accounts-transactions';
 import { TaskSchedularProxy } from '../features/task-scheduler';
@@ -75,6 +76,10 @@ export class ProxiesFactory {
 
   myCashiers(): MyCashiersProxy {
     return new MyCashiersProxy(this.axiosInstance);
+  }
+
+  myFiles(): MyFilesProxy {
+    return new MyFilesProxy(this.axiosInstance);
   }
 
   myPlayers(): MyPlayersProxy {
