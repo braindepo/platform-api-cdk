@@ -4,4 +4,6 @@ export interface INewProfileVerificationRequest {
   documentNumber: string;
   birthday: string;
   isMale: boolean;
+  selfieFileId: number;
+  documentFileId: number;
 }

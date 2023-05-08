@@ -5,4 +5,6 @@ export interface IProfileVerificationRequest {
   documentNumber: string;
   birthday: string;
   isMale: boolean;
+  selfieFileId: number;
+  documentFileId: number;
 }
