@@ -4,7 +4,7 @@ import { AccountTransactionsProxy } from '../features/account-transactions';
 import { AccountsProxy } from '../features/accounts';
 import { ApiTokensProxy } from '../features/api-tokens';
 import { AuthProxy } from '../features/auth';
-import { FileManagerProxy } from '../features/file-manager';
+import { FilesProxy } from '../features/files';
 import { GamesProxy } from '../features/games';
 import { LoggerProxy } from '../features/logger';
 import { MyAccountTransactionsProxy } from '../features/my-account-transactions';
@@ -58,8 +58,8 @@ export class ProxiesFactory {
     return new AuthProxy(this.axiosInstance);
   }
 
-  fileManager(): FileManagerProxy {
-    return new FileManagerProxy(this.axiosInstance);
+  files(): FilesProxy {
+    return new FilesProxy(this.axiosInstance);
   }
 
   games(): GamesProxy {
