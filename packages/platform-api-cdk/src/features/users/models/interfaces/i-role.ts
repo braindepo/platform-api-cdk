@@ -1,4 +1,4 @@
-import { RoleType } from '../../../auth/models';
+import { RoleType } from '../../../../shared/auth';
 
 export interface IRole {
   id: number;

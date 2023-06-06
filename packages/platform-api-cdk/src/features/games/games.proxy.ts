@@ -9,6 +9,10 @@ export class GamesProxy extends PlatformProxy {
     super(axiosInstance, '/games');
   }
 
+  async getPreviewImagePath(id: number): Promise<string> {
+    return this.axiosInstance.getUri({ url: `${this.baseUrl}/${id}/previewImage` });
+  }
+
   async findOne(id: number): Promise<IGame> {
     return this.get(`/${id}`);
   }

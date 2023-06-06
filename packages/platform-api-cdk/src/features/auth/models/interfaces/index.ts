@@ -1,4 +1,3 @@
-export * from './i-access-data';
 export * from './i-auth-token';
 export * from './i-email-verification-data';
 export * from './i-email-verification-result';

@@ -1,5 +1,4 @@
-import { RoleType } from '../enums';
-import { IAccessData } from './i-access-data';
+import { RoleType, IAccessData } from '../../../../shared/auth';
 
 export interface IUserAuthConfig {
   id: number;

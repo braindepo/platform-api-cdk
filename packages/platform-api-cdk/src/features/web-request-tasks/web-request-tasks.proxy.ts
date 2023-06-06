@@ -1,16 +1,11 @@
 import { Axios } from 'axios';
 
 import { PlatformProxy } from '../../shared/proxies';
-import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
-import { ITask, ITaskInfo, ITasksSearchFilter, TasksSortBy } from './models';
+import { ITaskInfo } from './models';
 
-export class TaskSchedularProxy extends PlatformProxy {
+export class WebRequestTasksProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
-    super(axiosInstance, '/tasks');
-  }
-
-  async findAll(filter: ICollectionFilter<ITasksSearchFilter, TasksSortBy>): Promise<IPaginatedData<ITask>> {
-    return this.get('', { params: filter });
+    super(axiosInstance, '/web-request-tasks');
   }
 
   async create(data: ITaskInfo): Promise<number> {

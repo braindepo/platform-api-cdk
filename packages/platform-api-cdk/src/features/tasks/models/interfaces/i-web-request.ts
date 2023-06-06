@@ -1,4 +1,4 @@
-import { WebRequestMethod } from '../enums';
+import { WebRequestMethod } from '../../../../shared/tasks';
 
 export interface IWebRequest {
   method: WebRequestMethod;

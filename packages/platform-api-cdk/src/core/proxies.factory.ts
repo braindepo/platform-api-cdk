@@ -7,14 +7,15 @@ import { AuthProxy } from '../features/auth';
 import { FilesProxy } from '../features/files';
 import { GamesProxy } from '../features/games';
 import { LoggerProxy } from '../features/logger';
+import { TasksProxy } from '../features/tasks';
 import { MyAccountTransactionsProxy } from '../features/my-account-transactions';
 import { MyCashiersProxy } from '../features/my-cashiers';
 import { MyFilesProxy } from '../features/my-files';
 import { MyPlayersProxy } from '../features/my-players';
 import { MyUsersAccountsTransactionsProxy } from '../features/my-users-accounts-transactions';
-import { TaskSchedularProxy } from '../features/task-scheduler';
 import { UserProfileProxy } from '../features/user-profile';
 import { UsersProxy } from '../features/users';
+import { WebRequestTasksProxy } from '../features/web-request-tasks';
 
 import { AuthMethod, IInterceptor } from './models';
 
@@ -90,8 +91,8 @@ export class ProxiesFactory {
     return new MyUsersAccountsTransactionsProxy(this.axiosInstance);
   }
 
-  tasksSchedular(): TaskSchedularProxy {
-    return new TaskSchedularProxy(this.axiosInstance);
+  tasks(): TasksProxy {
+    return new TasksProxy(this.axiosInstance);
   }
 
   userProfile(): UserProfileProxy {
@@ -100,5 +101,9 @@ export class ProxiesFactory {
 
   users(): UsersProxy {
     return new UsersProxy(this.axiosInstance);
+  }
+
+  webRequestTasks(): WebRequestTasksProxy {
+    return new WebRequestTasksProxy(this.axiosInstance);
   }
 }

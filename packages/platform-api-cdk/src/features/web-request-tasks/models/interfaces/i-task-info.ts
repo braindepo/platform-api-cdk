@@ -1,4 +1,5 @@
-import { TaskType } from '../enums';
+import { TaskType } from '../../../../shared/tasks';
+
 import { INewWebRequest } from './i-new-web-request';
 
 export interface ITaskInfo {
