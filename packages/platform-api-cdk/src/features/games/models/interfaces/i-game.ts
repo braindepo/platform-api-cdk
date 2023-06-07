@@ -3,4 +3,5 @@ export interface IGame {
   name: string;
   displayName: string;
   url: string;
+  previewImageFileId: number;
 }
