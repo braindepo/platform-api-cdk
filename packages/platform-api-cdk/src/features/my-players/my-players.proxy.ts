@@ -1,5 +1,6 @@
 import { Axios } from 'axios';
 
+import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
 import {
@@ -20,39 +21,42 @@ export class MyPlayersProxy extends PlatformProxy {
     super(axiosInstance, '/my-players');
   }
 
-  async exists(filter: IFindUserBaseFilter): Promise<boolean> {
-    return this.head('', { params: filter }).then((response) => response.status === 204);
+  async exists(filter: IFindUserBaseFilter, authTokenData?: IAuthTokenData): Promise<boolean> {
+    return this.head('', { params: filter, authTokenData }).then((response) => response.status === 204);
   }
 
-  async create(data: IBaseNewUser): Promise<number> {
-    return this.post('', data);
+  async create(data: IBaseNewUser, authTokenData?: IAuthTokenData): Promise<number> {
+    return this.post('', data, { authTokenData });
   }
 
-  async findOne(id: number): Promise<IUser> {
-    return this.get(`/${id}`);
+  async findOne(id: number, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.get(`/${id}`, { authTokenData });
   }
 
-  async findAll(filter: ICollectionFilter<IBaseUsersSearchFilter, MyPlayersSortBy>): Promise<IPaginatedData<IUser>> {
-    return this.get('', { params: filter });
+  async findAll(
+    filter: ICollectionFilter<IBaseUsersSearchFilter, MyPlayersSortBy>,
+    authTokenData?: IAuthTokenData,
+  ): Promise<IPaginatedData<IUser>> {
+    return this.get('', { params: filter, authTokenData });
   }
 
-  async statusesFindAll(): Promise<IUserStatus[]> {
-    return this.get('/statuses');
+  async statusesFindAll(authTokenData?: IAuthTokenData): Promise<IUserStatus[]> {
+    return this.get('/statuses', { authTokenData });
   }
 
-  async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo): Promise<IUser> {
-    return this.put(`/${id}/security`, securityInfo);
+  async updateSecurity({ id, ...securityInfo }: IUserSecurityInfo, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.put(`/${id}/security`, securityInfo, { authTokenData });
   }
 
-  async updateProfile({ id, ...profileInfo }: IUserProfileInfo): Promise<IUser> {
-    return this.put(`/${id}/profile`, profileInfo);
+  async updateProfile({ id, ...profileInfo }: IUserProfileInfo, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.put(`/${id}/profile`, profileInfo, { authTokenData });
   }
 
-  async setBlockState({ id, ...blockStateData }: IUserBlockStateData): Promise<IUser> {
-    return this.put(`/${id}/is-blocked`, blockStateData);
+  async setBlockState({ id, ...blockStateData }: IUserBlockStateData, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.put(`/${id}/is-blocked`, blockStateData, { authTokenData });
   }
 
-  async updateLimit({ id, ...changeData }: IAccountChange): Promise<IUser> {
-    return this.put(`/${id}/limit`, changeData);
+  async updateLimit({ id, ...changeData }: IAccountChange, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.put(`/${id}/limit`, changeData, { authTokenData });
   }
 }

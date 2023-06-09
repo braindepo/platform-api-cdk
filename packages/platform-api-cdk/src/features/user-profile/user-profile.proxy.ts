@@ -1,5 +1,6 @@
 import { Axios } from 'axios';
 
+import { IAuthTokenData } from '../../core/models';
 import { IUser } from '../../shared/users';
 import { PlatformProxy } from '../../shared/proxies';
 import { INewProfileVerificationRequest, IUpdateUserProfile, IUpdateUserSecurity } from './models';
@@ -9,23 +10,26 @@ export class UserProfileProxy extends PlatformProxy {
     super(axiosInstance, '/user-profile');
   }
 
-  async findOne(): Promise<IUser> {
-    return this.get('');
+  async findOne(authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.get('', { authTokenData });
   }
 
-  async updateSecurity(userSecurity: IUpdateUserSecurity): Promise<IUser> {
-    return this.put('/security', userSecurity);
+  async updateSecurity(userSecurity: IUpdateUserSecurity, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.put('/security', userSecurity, { authTokenData });
   }
 
-  async updateProfile(userProfile: IUpdateUserProfile): Promise<IUser> {
-    return this.put('/profile', userProfile);
+  async updateProfile(userProfile: IUpdateUserProfile, authTokenData?: IAuthTokenData): Promise<IUser> {
+    return this.put('/profile', userProfile, { authTokenData });
   }
 
-  async createVerificationRequest(data: INewProfileVerificationRequest): Promise<number> {
-    return this.put('/verification-request', data);
+  async createVerificationRequest(
+    data: INewProfileVerificationRequest,
+    authTokenData?: IAuthTokenData,
+  ): Promise<number> {
+    return this.put('/verification-request', data, { authTokenData });
   }
 
-  async remove(): Promise<void> {
-    return this.delete('');
+  async remove(authTokenData?: IAuthTokenData): Promise<void> {
+    return this.delete('', { authTokenData });
   }
 }

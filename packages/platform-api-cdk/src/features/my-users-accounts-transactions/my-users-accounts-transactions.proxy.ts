@@ -1,5 +1,6 @@
 import { Axios } from 'axios';
 
+import { IAuthTokenData } from '../../core/models';
 import {
   AccountOwnersSortBy,
   AccountTransactionSortBy,
@@ -16,25 +17,28 @@ export class MyUsersAccountsTransactionsProxy extends PlatformProxy {
     super(axiosInstance, '/my-users-accounts-transactions');
   }
 
-  async typesFindAll(): Promise<IAccountTransactionsType[]> {
-    return this.get('/types');
+  async typesFindAll(authTokenData?: IAuthTokenData): Promise<IAccountTransactionsType[]> {
+    return this.get('/types', { authTokenData });
   }
 
   async sendersFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
+    authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.get('/senders', { params: filter });
+    return this.get('/senders', { params: filter, authTokenData });
   }
 
   async recipientsFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
+    authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccountOwner>> {
-    return this.get('/recipients', { params: filter });
+    return this.get('/recipients', { params: filter, authTokenData });
   }
 
   async findAll(
     filter: ICollectionFilter<IAccountTransactionsSearchFilter, AccountTransactionSortBy>,
+    authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccountTransaction>> {
-    return this.get('', { params: filter });
+    return this.get('', { params: filter, authTokenData });
   }
 }

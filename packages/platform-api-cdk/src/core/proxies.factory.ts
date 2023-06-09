@@ -17,15 +17,15 @@ import { UserProfileProxy } from '../features/user-profile';
 import { UsersProxy } from '../features/users';
 import { WebRequestTasksProxy } from '../features/web-request-tasks';
 
-import { AuthMethod, IInterceptor } from './models';
+import { AuthMethod, IAuthTokenData, IInterceptor } from './models';
 
 export class ProxiesFactory {
   private readonly axiosInstance: Axios;
 
-  setAuthToken(authToken: string, authMethod: AuthMethod): void {
-    const authMethodPrefix = authMethod === AuthMethod.Jwt ? 'Bearer ' : 'Api-Key ';
+  setAuthToken({ token, method }: IAuthTokenData): void {
+    const authMethodPrefix = method === AuthMethod.Jwt ? 'Bearer ' : 'Api-Key ';
     const headers = this.axiosInstance.defaults.headers as unknown as RawAxiosRequestHeaders;
-    headers['Authorization'] = authMethodPrefix + authToken;
+    headers['Authorization'] = authMethodPrefix + token;
   }
 
   addRequestInterceptor(interceptor: IInterceptor<InternalAxiosRequestConfig>): void {

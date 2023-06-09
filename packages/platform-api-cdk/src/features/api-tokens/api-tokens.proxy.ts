@@ -1,5 +1,6 @@
 import { Axios } from 'axios';
 
+import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
 import {
@@ -19,31 +20,34 @@ export class ApiTokensProxy extends PlatformProxy {
     super(axiosInstance, '/api-tokens');
   }
 
-  async findAll(filter: ICollectionFilter<IApiTokensSearchFilter, ApiTokenSortBy>): Promise<IPaginatedData<IApiToken>> {
-    return this.get('', { params: filter });
+  async findAll(
+    filter: ICollectionFilter<IApiTokensSearchFilter, ApiTokenSortBy>,
+    authTokenData?: IAuthTokenData,
+  ): Promise<IPaginatedData<IApiToken>> {
+    return this.get('', { params: filter, authTokenData });
   }
 
-  async findAllResourceToPermissionRelations(): Promise<IResourceToPermissionRelation[]> {
-    return this.get(`/resource-permission-relations`);
+  async findAllResourceToPermissionRelations(authTokenData?: IAuthTokenData): Promise<IResourceToPermissionRelation[]> {
+    return this.get(`/resource-permission-relations`, { authTokenData });
   }
 
-  async findAllResources(): Promise<IResource[]> {
-    return this.get('/resources');
+  async findAllResources(authTokenData?: IAuthTokenData): Promise<IResource[]> {
+    return this.get('/resources', { authTokenData });
   }
 
-  async findOne(id: number): Promise<IApiTokenDetails> {
-    return this.get(`/${id}`);
+  async findOne(id: number, authTokenData?: IAuthTokenData): Promise<IApiTokenDetails> {
+    return this.get(`/${id}`, { authTokenData });
   }
 
-  async create(data: INewApiToken): Promise<INewApiTokenResult> {
-    return this.post('', data);
+  async create(data: INewApiToken, authTokenData?: IAuthTokenData): Promise<INewApiTokenResult> {
+    return this.post('', data, { authTokenData });
   }
 
-  async updateStatus({ id, ...data }: IApiTokenStatusInfo): Promise<void> {
-    return this.put(`/${id}/status`, data);
+  async updateStatus({ id, ...data }: IApiTokenStatusInfo, authTokenData?: IAuthTokenData): Promise<void> {
+    return this.put(`/${id}/status`, data, { authTokenData });
   }
 
-  async remove(id: number): Promise<void> {
-    return this.delete(`/${id}`);
+  async remove(id: number, authTokenData?: IAuthTokenData): Promise<void> {
+    return this.delete(`/${id}`, { authTokenData });
   }
 }

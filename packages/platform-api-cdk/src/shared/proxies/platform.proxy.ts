@@ -1,4 +1,6 @@
 import { Axios, AxiosRequestConfig, AxiosResponse } from 'axios';
+
+import { AuthMethod } from '../../core/models';
 import { IProxyRequestConfig } from './models';
 
 export class PlatformProxy {
@@ -8,14 +10,16 @@ export class PlatformProxy {
     url: string,
     config?: IProxyRequestConfig<D>,
   ): Promise<R> {
-    return this.axiosInstance.head(`${this.baseUrl}${url}`, config);
+    return this.axiosInstance.head(`${this.baseUrl}${url}`, this.toAxiosRequestConfig(config));
   }
 
   protected get<T = unknown, R = AxiosResponse<T>, D = unknown>(
     url: string,
     config?: IProxyRequestConfig<D>,
   ): Promise<R> {
-    return this.axiosInstance.get(`${this.baseUrl}${url}`, config).then(this.handleResponse<R>);
+    return this.axiosInstance
+      .get(`${this.baseUrl}${url}`, this.toAxiosRequestConfig(config))
+      .then(this.handleResponse<R>);
   }
 
   protected post<T = unknown, R = AxiosResponse<T>, D = unknown>(
@@ -27,7 +31,7 @@ export class PlatformProxy {
       .post(
         `${this.baseUrl}${url}`,
         config?.supressDataStringification ? data : JSON.stringify(data),
-        config as AxiosRequestConfig<string>,
+        this.toAxiosRequestConfig(config),
       )
       .then(this.handleResponse<R>);
   }
@@ -41,7 +45,7 @@ export class PlatformProxy {
       .put(
         `${this.baseUrl}${url}`,
         config?.supressDataStringification ? data : JSON.stringify(data),
-        config as AxiosRequestConfig<string>,
+        this.toAxiosRequestConfig(config),
       )
       .then(this.handleResponse<R>);
   }
@@ -50,7 +54,9 @@ export class PlatformProxy {
     url: string,
     config?: IProxyRequestConfig<D>,
   ): Promise<R> {
-    return this.axiosInstance.delete(`${this.baseUrl}${url}`, config).then(this.handleResponse<R>);
+    return this.axiosInstance
+      .delete(`${this.baseUrl}${url}`, this.toAxiosRequestConfig(config))
+      .then(this.handleResponse<R>);
   }
 
   protected handleResponse = <T = unknown>(response: AxiosResponse<string>): T => {
@@ -59,4 +65,20 @@ export class PlatformProxy {
     }
     return response.data ? JSON.parse(response.data) : response.data;
   };
+
+  private toAxiosRequestConfig<D>(config?: IProxyRequestConfig<D>): AxiosRequestConfig<D> | undefined {
+    if (!config) return config;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { supressDataStringification, authTokenData, ...result } = config;
+    if (authTokenData) {
+      const { token, method } = authTokenData;
+      const authMethodPrefix = method === AuthMethod.Jwt ? 'Bearer ' : 'Api-Key ';
+      const authHeaders = { Authorization: authMethodPrefix + token };
+      result.headers = {
+        ...result.headers,
+        ...authHeaders,
+      };
+    }
+    return result;
+  }
 }

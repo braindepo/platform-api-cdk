@@ -1,5 +1,6 @@
 import { Axios } from 'axios';
 
+import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
 import { ITaskInfo } from './models';
 
@@ -8,15 +9,15 @@ export class WebRequestTasksProxy extends PlatformProxy {
     super(axiosInstance, '/web-request-tasks');
   }
 
-  async create(data: ITaskInfo): Promise<number> {
-    return this.post('', data);
+  async create(data: ITaskInfo, authTokenData?: IAuthTokenData): Promise<number> {
+    return this.post('', data, { authTokenData });
   }
 
-  async update({ externalId, ...taskInfo }: ITaskInfo): Promise<void> {
-    return this.put(`/${externalId}`, taskInfo);
+  async update({ externalId, ...taskInfo }: ITaskInfo, authTokenData?: IAuthTokenData): Promise<void> {
+    return this.put(`/${externalId}`, taskInfo, { authTokenData });
   }
 
-  async remove(externalId: string): Promise<void> {
-    return this.delete(`/${externalId}`);
+  async remove(externalId: string, authTokenData?: IAuthTokenData): Promise<void> {
+    return this.delete(`/${externalId}`, { authTokenData });
   }
 }
