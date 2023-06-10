@@ -17,5 +17,6 @@ export * from './features/user-profile';
 export * from './features/users';
 export * from './features/web-request-tasks';
 export * from './shared/auth';
-export * from './shared/users';
 export * from './shared/collections';
+export * from './shared/tasks';
+export * from './shared/users';
