@@ -1,13 +1,10 @@
-import { AccountType } from '..';
+import { AccountCategory, AccountType, IAccountManager } from '..';
 
 export interface INewAccount {
   gameId?: number;
-  ownerId: number;
-  ownerName: string;
   externalId: string;
-  cashierId?: number;
-  cashierName?: string;
-  partnerId?: number;
-  partnerName?: string;
-  accountType: AccountType;
+  type: AccountType;
+  category: AccountCategory;
+  owner: IAccountManager;
+  managers?: IAccountManager[];
 }

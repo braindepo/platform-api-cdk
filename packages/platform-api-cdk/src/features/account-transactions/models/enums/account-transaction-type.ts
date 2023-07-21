@@ -1,5 +1,5 @@
 export enum AccountTransactionType {
-  Refill = 'Refill',
+  Deposit = 'Deposit',
   Withdrawal = 'Withdrawal',
   Transfer = 'Transfer',
 }

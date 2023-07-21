@@ -1,7 +1,7 @@
 import { AccountTransactionType } from '..';
 import { IUnilateralOperation } from './i-unilateral-operation';
 
-export interface IRefillOperation {
-  type: AccountTransactionType.Refill;
+export interface IDepositOperation {
+  type: AccountTransactionType.Deposit;
   data: IUnilateralOperation;
 }
