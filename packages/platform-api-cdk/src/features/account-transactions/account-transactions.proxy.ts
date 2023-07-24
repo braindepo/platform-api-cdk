@@ -4,13 +4,12 @@ import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, INameSearchFilter, IPaginatedData } from '../../shared/collections';
 import {
-  AccountOwnersSortBy,
+  AccountManagersSortBy,
   AccountTransactionSortBy,
-  IAccountOwner,
+  IAccountManager,
   IAccountTransaction,
   IAccountTransactionsSearchFilter,
-  IOperation,
-} from './models';
+} from '../../shared/account-transactions';
 
 export class AccountTransactionsProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
@@ -24,21 +23,17 @@ export class AccountTransactionsProxy extends PlatformProxy {
     return this.get('', { params: data, authTokenData });
   }
 
-  async sendersFindAll(
-    data: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
+  async accountTransactionsSendersFindAll(
+    data: ICollectionFilter<INameSearchFilter, AccountManagersSortBy>,
     authTokenData?: IAuthTokenData,
-  ): Promise<IPaginatedData<IAccountOwner>> {
+  ): Promise<IPaginatedData<IAccountManager>> {
     return this.get('/senders', { params: data, authTokenData });
   }
 
-  async recipientsFindAll(
-    data: ICollectionFilter<INameSearchFilter, AccountOwnersSortBy>,
+  async accountTransactionsRecipientsFindAll(
+    data: ICollectionFilter<INameSearchFilter, AccountManagersSortBy>,
     authTokenData?: IAuthTokenData,
-  ): Promise<IPaginatedData<IAccountOwner>> {
+  ): Promise<IPaginatedData<IAccountManager>> {
     return this.get('/recipients', { params: data, authTokenData });
-  }
-
-  async create(data: IOperation[], authTokenData?: IAuthTokenData): Promise<number[]> {
-    return this.post('', data, { authTokenData });
   }
 }

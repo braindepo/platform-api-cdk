@@ -1,4 +1,5 @@
-import { AccountTransactionType } from '..';
+import { AccountTransactionType } from '../../../../shared/account-transactions';
+
 import { IUnilateralOperation } from './i-unilateral-operation';
 
 export interface IDepositOperation {

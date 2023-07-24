@@ -1,4 +1,5 @@
-import { AccountTransactionType } from '..';
+import { AccountTransactionType } from '../../../../shared/account-transactions';
+
 import { IBilateralOperation } from './i-bilateral-operation';
 
 export interface ITransferOperation {
