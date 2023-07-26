@@ -71,7 +71,7 @@ export class ProxiesFactory {
     return new LoggerProxy(this.axiosInstance);
   }
 
-  myAccountTransactionsProxy(): MyAccountTransactionsProxy {
+  myAccountTransactions(): MyAccountTransactionsProxy {
     return new MyAccountTransactionsProxy(this.axiosInstance);
   }
 
@@ -87,7 +87,7 @@ export class ProxiesFactory {
     return new MyPlayersProxy(this.axiosInstance);
   }
 
-  myUsersAccountsTransactionsProxy(): MyUsersAccountsTransactionsProxy {
+  myUsersAccountsTransactions(): MyUsersAccountsTransactionsProxy {
     return new MyUsersAccountsTransactionsProxy(this.axiosInstance);
   }
 

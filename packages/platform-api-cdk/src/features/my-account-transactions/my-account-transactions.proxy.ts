@@ -8,7 +8,12 @@ import {
   IPaginatedData,
 } from '../../shared/collections';
 import { PlatformProxy } from '../../shared/proxies';
-import { AccountManagersSortBy, AccountTransactionSortBy, IAccountManager } from '../../shared/account-transactions';
+import {
+  AccountManagersSortBy,
+  AccountTransactionSortBy,
+  IAccountManager,
+  IAccountTransaction,
+} from '../../shared/account-transactions';
 import { IAccountTransactionsTotalSum, IOperation, ISummarizedAccountTransactionsSearchFilter } from './models';
 
 export class MyAccountTransactionsProxy extends PlatformProxy {
@@ -19,22 +24,15 @@ export class MyAccountTransactionsProxy extends PlatformProxy {
   async findAllSummarized(
     filter: ICollectionFilter<ISummarizedAccountTransactionsSearchFilter, AccountTransactionSortBy>,
     authTokenData?: IAuthTokenData,
-  ): Promise<IPaginatedSummarizedData<ISummarizedAccountTransactionsSearchFilter, IAccountTransactionsTotalSum>> {
+  ): Promise<IPaginatedSummarizedData<IAccountTransaction, IAccountTransactionsTotalSum>> {
     return this.get('', { params: filter, authTokenData });
   }
 
-  async accountTransactionsSendersFindAll(
+  async accountManagersFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountManagersSortBy>,
     authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccountManager>> {
-    return this.get('/senders', { params: filter, authTokenData });
-  }
-
-  async accountTransactionsRecipientsFindAll(
-    filter: ICollectionFilter<INameSearchFilter, AccountManagersSortBy>,
-    authTokenData?: IAuthTokenData,
-  ): Promise<IPaginatedData<IAccountManager>> {
-    return this.get('/recipients', { params: filter, authTokenData });
+    return this.get('/account-managers', { params: filter, authTokenData });
   }
 
   async create(data: IOperation[], authTokenData?: IAuthTokenData): Promise<number[]> {

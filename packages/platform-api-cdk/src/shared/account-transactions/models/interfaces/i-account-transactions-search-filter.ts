@@ -1,10 +1,12 @@
+import { AccountTransactionType } from '../enums';
+
 export interface IAccountTransactionsSearchFilter {
   id?: number;
-  fromAccountExternalId?: string;
-  toAccountExternalId?: string;
+  fromAccountOwnerId?: number;
+  toAccountOwnerId?: number;
   sumFrom?: number;
   sumTo?: number;
   dateFrom?: string;
   dateTo?: string;
-  transactionTypeId?: number;
+  transactionType?: AccountTransactionType;
 }
