@@ -23,17 +23,10 @@ export class MyUsersAccountsTransactionsProxy extends PlatformProxy {
     return this.get('', { params: filter, authTokenData });
   }
 
-  async accountTransactionsSendersFindAll(
+  async accountManagersFindAll(
     filter: ICollectionFilter<INameSearchFilter, AccountManagersSortBy>,
     authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccountManager>> {
-    return this.get('/senders', { params: filter, authTokenData });
-  }
-
-  async accountTransactionsRecipientsFindAll(
-    filter: ICollectionFilter<INameSearchFilter, AccountManagersSortBy>,
-    authTokenData?: IAuthTokenData,
-  ): Promise<IPaginatedData<IAccountManager>> {
-    return this.get('/recipients', { params: filter, authTokenData });
+    return this.get('/account-managers', { params: filter, authTokenData });
   }
 }
