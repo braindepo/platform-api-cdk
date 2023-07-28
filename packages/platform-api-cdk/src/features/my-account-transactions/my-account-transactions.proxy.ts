@@ -13,8 +13,9 @@ import {
   AccountTransactionSortBy,
   IAccountManager,
   IAccountTransaction,
+  IAccountTransactionsSearchFilter,
 } from '../../shared/account-transactions';
-import { IAccountTransactionsTotalSum, IOperation, ISummarizedAccountTransactionsSearchFilter } from './models';
+import { IAccountTransactionsTotalSum, IOperation } from './models';
 
 export class MyAccountTransactionsProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
@@ -22,7 +23,7 @@ export class MyAccountTransactionsProxy extends PlatformProxy {
   }
 
   async findAllSummarized(
-    filter: ICollectionFilter<ISummarizedAccountTransactionsSearchFilter, AccountTransactionSortBy>,
+    filter: ICollectionFilter<IAccountTransactionsSearchFilter, AccountTransactionSortBy>,
     authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedSummarizedData<IAccountTransaction, IAccountTransactionsTotalSum>> {
     return this.get('', { params: filter, authTokenData });
