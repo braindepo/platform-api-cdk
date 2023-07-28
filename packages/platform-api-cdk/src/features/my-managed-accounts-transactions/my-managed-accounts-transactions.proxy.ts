@@ -2,30 +2,24 @@ import { Axios } from 'axios';
 
 import { IAuthTokenData } from '../../core/models';
 import {
-  IPaginatedSummarizedData,
-  ICollectionFilter,
-  INameSearchFilter,
-  IPaginatedData,
-} from '../../shared/collections';
-import { PlatformProxy } from '../../shared/proxies';
-import {
   AccountManagersSortBy,
   AccountTransactionSortBy,
   IAccountManager,
   IAccountTransaction,
   IAccountTransactionsSearchFilter,
 } from '../../shared/account-transactions';
-import { IAccountTransactionsTotalSum, IOperation } from './models';
+import { IPaginatedData, ICollectionFilter, INameSearchFilter } from '../../shared/collections';
+import { PlatformProxy } from '../../shared/proxies';
 
-export class MyAccountTransactionsProxy extends PlatformProxy {
+export class MyManagedAccountsTransactionsProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
-    super(axiosInstance, '/my-account-transactions');
+    super(axiosInstance, '/my-managed-accounts-transactions');
   }
 
-  async findAllSummarized(
+  async findAll(
     filter: ICollectionFilter<IAccountTransactionsSearchFilter, AccountTransactionSortBy>,
     authTokenData?: IAuthTokenData,
-  ): Promise<IPaginatedSummarizedData<IAccountTransaction, IAccountTransactionsTotalSum>> {
+  ): Promise<IPaginatedData<IAccountTransaction>> {
     return this.get('', { params: filter, authTokenData });
   }
 
@@ -34,9 +28,5 @@ export class MyAccountTransactionsProxy extends PlatformProxy {
     authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccountManager>> {
     return this.get('/account-managers', { params: filter, authTokenData });
-  }
-
-  async create(data: IOperation[], authTokenData?: IAuthTokenData): Promise<number[]> {
-    return this.post('', data, { authTokenData });
   }
 }
