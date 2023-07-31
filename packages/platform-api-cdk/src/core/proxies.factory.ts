@@ -7,6 +7,7 @@ import { AuthProxy } from '../features/auth';
 import { FilesProxy } from '../features/files';
 import { GamesProxy } from '../features/games';
 import { LoggerProxy } from '../features/logger';
+import { MyAccountsProxy } from '../features/my-accounts';
 import { TasksProxy } from '../features/tasks';
 import { MyAccountsTransactionsProxy } from '../features/my-accounts-transactions';
 import { MyCashiersProxy } from '../features/my-cashiers';
@@ -69,6 +70,10 @@ export class ProxiesFactory {
 
   logger(): LoggerProxy {
     return new LoggerProxy(this.axiosInstance);
+  }
+
+  myAccounts(): MyAccountsProxy {
+    return new MyAccountsProxy(this.axiosInstance);
   }
 
   myAccountsTransactions(): MyAccountsTransactionsProxy {
