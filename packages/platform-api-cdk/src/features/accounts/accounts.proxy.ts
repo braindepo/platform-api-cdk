@@ -2,7 +2,8 @@ import { Axios } from 'axios';
 
 import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
-import { IAccount, INewAccount, IUpdateAccounts } from './models';
+import { IAccount } from '../../shared/accounts';
+import { INewAccount, IUpdateAccounts } from './models';
 
 export class AccountsProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
