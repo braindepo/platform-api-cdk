@@ -1,9 +1,8 @@
 import { AccountCategory, AccountType } from '../../../../shared/accounts';
-import { IAccountManager } from '..';
+import { IAccountManager } from '../../../../shared/account-managers';
 
 export interface INewAccount {
   gameId?: number;
-  externalId: string;
   type: AccountType;
   category: AccountCategory;
   owner: IAccountManager;

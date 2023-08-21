@@ -1,6 +1,5 @@
 import { Axios, RawAxiosRequestHeaders, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { AccountTransactionsProxy } from '../features/account-transactions';
 import { AccountsProxy } from '../features/accounts';
 import { ApiTokensProxy } from '../features/api-tokens';
 import { AuthProxy } from '../features/auth';
@@ -8,12 +7,14 @@ import { FilesProxy } from '../features/files';
 import { GamesProxy } from '../features/games';
 import { LoggerProxy } from '../features/logger';
 import { MyAccountsProxy } from '../features/my-accounts';
-import { TasksProxy } from '../features/tasks';
-import { MyAccountsTransactionsProxy } from '../features/my-accounts-transactions';
 import { MyCashiersProxy } from '../features/my-cashiers';
 import { MyFilesProxy } from '../features/my-files';
-import { MyManagedAccountsTransactionsProxy } from '../features/my-managed-accounts-transactions';
+import { MyManagedAccountsProxy } from '../features/my-managed-accounts';
+import { MyManagedAccountsPaymentOrdersProxy } from '../features/my-managed-accounts-payment-orders';
+import { MyPaymentOrdersProxy } from '../features/my-payment-orders';
 import { MyPlayersProxy } from '../features/my-players';
+import { PaymentOrdersProxy } from '../features/payment-orders';
+import { TasksProxy } from '../features/tasks';
 import { UserProfileProxy } from '../features/user-profile';
 import { UsersProxy } from '../features/users';
 import { WebRequestTasksProxy } from '../features/web-request-tasks';
@@ -44,10 +45,6 @@ export class ProxiesFactory {
     });
   }
 
-  accountTransactions(): AccountTransactionsProxy {
-    return new AccountTransactionsProxy(this.axiosInstance);
-  }
-
   accounts(): AccountsProxy {
     return new AccountsProxy(this.axiosInstance);
   }
@@ -76,10 +73,6 @@ export class ProxiesFactory {
     return new MyAccountsProxy(this.axiosInstance);
   }
 
-  myAccountsTransactions(): MyAccountsTransactionsProxy {
-    return new MyAccountsTransactionsProxy(this.axiosInstance);
-  }
-
   myCashiers(): MyCashiersProxy {
     return new MyCashiersProxy(this.axiosInstance);
   }
@@ -88,12 +81,24 @@ export class ProxiesFactory {
     return new MyFilesProxy(this.axiosInstance);
   }
 
-  myManagedAccountsTransactions(): MyManagedAccountsTransactionsProxy {
-    return new MyManagedAccountsTransactionsProxy(this.axiosInstance);
+  myManagedAccounts(): MyManagedAccountsProxy {
+    return new MyManagedAccountsProxy(this.axiosInstance);
+  }
+
+  myManagedAccountsPaymentOrders(): MyManagedAccountsPaymentOrdersProxy {
+    return new MyManagedAccountsPaymentOrdersProxy(this.axiosInstance);
+  }
+
+  myPaymentOrders(): MyPaymentOrdersProxy {
+    return new MyPaymentOrdersProxy(this.axiosInstance);
   }
 
   myPlayers(): MyPlayersProxy {
     return new MyPlayersProxy(this.axiosInstance);
+  }
+
+  paymentOrders(): PaymentOrdersProxy {
+    return new PaymentOrdersProxy(this.axiosInstance);
   }
 
   tasks(): TasksProxy {

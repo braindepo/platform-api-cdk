@@ -4,11 +4,10 @@ import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
 import { AccountSortBy, IAccountsSearchFilter, IAccount } from '../../shared/accounts';
-import { INewAccount } from './models';
 
-export class AccountsProxy extends PlatformProxy {
+export class MyManagedAccountsProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
-    super(axiosInstance, '/accounts');
+    super(axiosInstance, '/my-managed-accounts');
   }
 
   async findAll(
@@ -16,9 +15,5 @@ export class AccountsProxy extends PlatformProxy {
     authTokenData?: IAuthTokenData,
   ): Promise<IPaginatedData<IAccount>> {
     return this.get('', { params: filter, authTokenData });
-  }
-
-  async create(data: INewAccount, authTokenData?: IAuthTokenData): Promise<number> {
-    return this.post('', data, { authTokenData });
   }
 }

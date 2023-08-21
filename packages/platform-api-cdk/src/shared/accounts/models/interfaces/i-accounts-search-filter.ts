@@ -1,5 +1,5 @@
-import { AccountCategory } from '..';
+import { IMyAccountsSearchFilter } from './i-my-accounts-search-filter';
 
-export interface IAccountsSearchFilter {
-  category?: AccountCategory;
+export interface IAccountsSearchFilter extends IMyAccountsSearchFilter {
+  ownerId?: string;
 }
