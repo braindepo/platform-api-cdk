@@ -1,8 +1,9 @@
-import { AccountCategory } from '../enums';
+import { AccountCategory, AccountType } from '../enums';
 
 export interface IAccount {
   id: number;
   balance: number;
-  externalId: string;
   category: AccountCategory;
+  type: AccountType;
+  ownerId: string;
 }
