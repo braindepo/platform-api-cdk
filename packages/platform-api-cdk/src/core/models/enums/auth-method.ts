@@ -1,4 +1,4 @@
 export enum AuthMethod {
-  Jwt,
-  ApiToken,
+  Jwt = 'Jwt',
+  ApiToken = 'ApiToken',
 }

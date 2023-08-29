@@ -18,7 +18,7 @@ export class AccountsProxy extends PlatformProxy {
     return this.get('', { params: filter, authTokenData });
   }
 
-  async create(data: INewAccount, authTokenData?: IAuthTokenData): Promise<number> {
+  async create(data: INewAccount[], authTokenData?: IAuthTokenData): Promise<number> {
     return this.post('', data, { authTokenData });
   }
 
