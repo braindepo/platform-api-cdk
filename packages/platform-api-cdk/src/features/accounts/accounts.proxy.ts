@@ -23,6 +23,6 @@ export class AccountsProxy extends PlatformProxy {
   }
 
   async update(data: IAccountInfo, authTokenData?: IAuthTokenData): Promise<void> {
-    return this.post('', data, { authTokenData });
+    return this.put('', data, { authTokenData });
   }
 }
