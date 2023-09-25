@@ -14,6 +14,7 @@ export * from './features/my-managed-accounts-payment-orders';
 export * from './features/my-payment-orders';
 export * from './features/my-players';
 export * from './features/payment-orders';
+export * from './features/statistics';
 export * from './features/tasks';
 export * from './features/user-profile';
 export * from './features/users';

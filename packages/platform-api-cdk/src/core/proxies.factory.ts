@@ -5,6 +5,7 @@ import { ApiTokensProxy } from '../features/api-tokens';
 import { AuthProxy } from '../features/auth';
 import { FilesProxy } from '../features/files';
 import { GamesProxy } from '../features/games';
+import { StatisticsProxy } from '../features/statistics';
 import { LoggerProxy } from '../features/logger';
 import { MyAccountsProxy } from '../features/my-accounts';
 import { MyCashiersProxy } from '../features/my-cashiers';
@@ -99,6 +100,10 @@ export class ProxiesFactory {
 
   paymentOrders(): PaymentOrdersProxy {
     return new PaymentOrdersProxy(this.axiosInstance);
+  }
+
+  statistics(): StatisticsProxy {
+    return new StatisticsProxy(this.axiosInstance);
   }
 
   tasks(): TasksProxy {
