@@ -5,5 +5,5 @@ export interface IApiGatewayError {
   statusCode: HttpStatus;
   timestamp: string;
   path: string;
-  message: (string | object)[];
+  messages: string[];
 }
