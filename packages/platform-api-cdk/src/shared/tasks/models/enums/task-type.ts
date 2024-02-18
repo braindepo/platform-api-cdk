@@ -1,4 +1,5 @@
 export enum TaskType {
   WebRequest = 'WebRequest',
-  MicroserviceRpcRequest = 'MicroserviceRpcRequest',
+  RpcRequest = 'RpcRequest',
+  DbBackup = 'DbBackup',
 }

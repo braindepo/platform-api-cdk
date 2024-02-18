@@ -1,8 +1,9 @@
 import { TaskCategory, TaskType } from '../../../../shared/tasks';
 
 import { TaskStatus } from '../enums';
-import { IMicroserviceRpcRequest } from './i-microservice-rpc-request';
-import { IWebRequest } from './i-web-request';
+import { IDbBackupData } from './i-db-backup-data';
+import { IRpcRequestData } from './i-rpc-request-data';
+import { IWebRequestData } from './i-web-request-data';
 
 export interface ITask {
   id: number;
@@ -13,5 +14,5 @@ export interface ITask {
   status: TaskStatus;
   category: TaskCategory;
   taskType: TaskType;
-  data: IWebRequest | IMicroserviceRpcRequest;
+  data: IWebRequestData | IRpcRequestData | IDbBackupData;
 }
