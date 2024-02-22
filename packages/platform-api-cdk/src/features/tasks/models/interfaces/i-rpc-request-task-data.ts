@@ -1,4 +1,4 @@
-export interface IRpcRequestData {
+export interface IRpcRequestTaskData {
   rpcTemplate: string;
   languageIsoCode?: string;
   data?: string;

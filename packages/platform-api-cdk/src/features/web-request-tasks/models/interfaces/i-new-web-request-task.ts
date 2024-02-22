@@ -1,11 +1,11 @@
 import { TaskCategory } from '../../../../shared/tasks';
-import { INewWebRequest } from './i-new-web-request';
+import { INewWebRequestTaskData } from './i-new-web-request-task-data';
 
-export interface IWebRequestTaskInfo {
+export interface INewWebRequestTask {
   externalId: string;
   startDate: string;
   name: string;
   category: TaskCategory;
   intervalInMs?: number;
-  data?: INewWebRequest;
+  data?: INewWebRequestTaskData;
 }

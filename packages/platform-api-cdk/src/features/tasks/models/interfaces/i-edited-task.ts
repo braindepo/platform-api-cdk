@@ -1,6 +1,6 @@
 import { TaskStatus } from '../enums';
 
-export interface ITaskInfo {
+export interface IEditedTask {
   externalId: string;
   status: TaskStatus;
   startDate?: string;

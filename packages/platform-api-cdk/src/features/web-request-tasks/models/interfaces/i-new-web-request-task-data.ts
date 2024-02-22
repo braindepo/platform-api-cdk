@@ -1,6 +1,6 @@
 import { WebRequestMethod } from '../../../../shared/tasks';
 
-export interface INewWebRequest {
+export interface INewWebRequestTaskData {
   method: WebRequestMethod;
   url: string;
   queryParams?: string;

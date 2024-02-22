@@ -3,7 +3,7 @@ import { Axios } from 'axios';
 import { IAuthTokenData } from '../../core/models';
 import { PlatformProxy } from '../../shared/proxies';
 import { ICollectionFilter, IPaginatedData } from '../../shared/collections';
-import { ITask, ITaskInfo, ITasksSearchFilter, TasksSortBy } from './models';
+import { ITask, IEditedTask, ITasksSearchFilter, TasksSortBy } from './models';
 
 export class TasksProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
@@ -17,7 +17,7 @@ export class TasksProxy extends PlatformProxy {
     return this.get('', { params: filter, authTokenData });
   }
 
-  async update({ externalId, ...taskInfo }: ITaskInfo, authTokenData?: IAuthTokenData): Promise<void> {
+  async update({ externalId, ...taskInfo }: IEditedTask, authTokenData?: IAuthTokenData): Promise<void> {
     return this.put(`/${externalId}`, taskInfo, { authTokenData });
   }
 }
