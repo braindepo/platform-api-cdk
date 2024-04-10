@@ -3,7 +3,7 @@ import { Axios } from 'axios';
 import { IAuthTokenData } from '../../core/models';
 import { IPaginatedData, ICollectionFilter } from '../../shared/collections';
 import { PlatformProxy } from '../../shared/proxies';
-import { GamesSortBy, IGame, IGamesSearchFilter } from './models';
+import { GamesSortBy, IGame, IGameTagGroup, IGamesSearchFilter } from './models';
 
 export class GamesProxy extends PlatformProxy {
   constructor(axiosInstance: Axios) {
@@ -12,6 +12,10 @@ export class GamesProxy extends PlatformProxy {
 
   async getPreviewImagePath(id: number): Promise<string> {
     return this.axiosInstance.getUri({ url: `${this.baseUrl}/${id}/previewImage` });
+  }
+
+  async findAllGameTagGroups(authTokenData?: IAuthTokenData): Promise<IGameTagGroup[]> {
+    return this.get('/tag-groups', { authTokenData });
   }
 
   async findOne(id: number, authTokenData?: IAuthTokenData): Promise<IGame> {

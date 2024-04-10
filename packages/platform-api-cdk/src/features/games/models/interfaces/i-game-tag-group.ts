@@ -1,10 +1,7 @@
 import { IGameTag } from './i-game-tag';
 
-export interface IGame {
+export interface IGameTagGroup {
   id: number;
   name: string;
-  displayName: string;
-  url: string;
-  previewImageFileId: number;
   tags: IGameTag[];
 }
